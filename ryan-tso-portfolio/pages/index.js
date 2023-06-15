@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {Box} from "@mui/material";
-import Title from "../Components/Title/Title";
+import Title from "../Components/Title";
+import Navbar from "../Components/Navbar";
 
 export default function Home() {
   return (
@@ -13,10 +14,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <Title />
-      <Box sx={{position: "relative", height:500, backgroundColor: "grey"}}>
-        Stuff
-      </Box>
+      <Title />
+      <Navbar />
 
 
     </div>

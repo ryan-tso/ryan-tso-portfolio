@@ -44,6 +44,7 @@ export default function Title() {
                 color: theme.palette.title.text,
                 borderColor: theme.palette.title.text,
                 fontFamily: theme.typography.sectionHeader,
+                transition: 'all 0.5 ease-in-out',
                 "&:hover": {
                   backgroundColor: theme.palette.title.text,
                   borderColor: theme.palette.title.text,
