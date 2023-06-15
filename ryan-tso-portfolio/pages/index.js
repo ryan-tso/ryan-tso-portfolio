@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import {Box} from "@mui/material";
 import Title from "../Components/Title";
 import Navbar from "../Components/Navbar";
+import Skills from "../Components/Skills";
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
 
       <Title />
       <Navbar />
+
+      <Box sx={{height: '1500px', width: '100%', backgroundColor: 'grey'}}/>
 
 
     </div>

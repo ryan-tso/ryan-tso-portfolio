@@ -1,18 +1,22 @@
-import {Box, Divider, Stack, Typography, useTheme} from "@mui/material";
+import {Box, Divider, Grow, Slide, Stack, Typography, useTheme, Zoom} from "@mui/material";
 import {useState} from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 
 const SECTIONS = ["About Me", "Skills", "Experience", "Projects", "Contact"]
 
 
 export default function Navbar() {
   const theme = useTheme();
-  const [selection, setSelection] = useState("");
+  const dispatch = useDispatch();
+
+  const selection = useSelector((state) => state.scrollLocation.value)
+  // const [selection, setSelection] = useState("");
 
   const buttonStyle = {
     fontFamily: theme.typography.navBar,
     fontWeight: 300,
     fontSize: {xs: '15pt', sm: '17pt', md: "20pt"},
-    // transition: 'background 0.5s, color 0.5s',
     transition: 'all 0.25s ease-in-out',
     '&:hover': {
       color: theme.palette.title.text,
@@ -21,11 +25,12 @@ export default function Navbar() {
   }
 
   const select = (e) => {
-    setSelection(e.currentTarget.textContent);
+    // setSelection(e.currentTarget.textContent);
+    dispatch(setScrollLocation(e.currentTarget.textContent));
   }
 
   return (
-    <Box sx={{position: "relative", height: "70px", pt: '12px', pb: '12px'}}>
+    <Box sx={{position: "sticky", top: '0px', height: "60px", pt: '8px', pb: '8px', backgroundColor: 'white'}}>
       <Divider fullWidth sx={{backgroundColor: 'darkgrey'}} />
       <Stack
         flexDirection="row"
@@ -35,13 +40,21 @@ export default function Navbar() {
           ml: 'auto',
           mr: 'auto',
           width: "60%",
-          minWidth: 500,
+          minWidth: '500px',
+          maxWidth: '1000px',
           height: "100%",
         }}
       >
         {
-          SECTIONS.map((item) => (
-            <Typography onClick={select} sx={{...buttonStyle, color: item === selection ? 'white' : '', backgroundColor: item === selection ? 'black' : ''}}>{item}</Typography>
+          SECTIONS.map((item, index) => (
+            <Stack key={index} flexDirection="column" alignItems="center">
+              <Typography onClick={select} sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : ''}}>{item}</Typography>
+              {selection === item &&
+                <Zoom in easing={{enter: "ease-in", exit: "linear"}}>
+                  <Box sx={{height: '2px', width: '110%', mt: '-4px', borderRadius: '3px', backgroundColor: theme.palette.title.text}} />
+                </Zoom>
+              }
+            </Stack>
           ))
         }
       </Stack>
