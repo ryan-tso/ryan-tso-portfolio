@@ -7,6 +7,12 @@ To Use:
 - If making styled components outside a function, can access this by calling theme.palette.primary.main as an example
 - If needed inside the function, must call "const theme = useTheme();" first before you can access.
  */
+
+/*
+font-family: 'Quicksand', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+ */
 export const theme = createTheme({
   palette: {
   //   primary: {
@@ -43,10 +49,16 @@ export const theme = createTheme({
     fontWeightLight: 100,
     fontWeightRegular: 300,
     fontWeightMedium: 400,
-    altText: {
+    navBar: {
       fontFamily: 'Roboto Condensed',
       fontWeightLight: 300,
       fontWeightRegular: 400,
+    },
+    sectionHeader: {
+      fontFamily: 'Quicksand',
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
     }
   },
   breakpoints: {
