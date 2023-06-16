@@ -30,7 +30,7 @@ export default function Navbar() {
   }
 
   return (
-    <Box sx={{position: "sticky", top: '0px', height: "60px", pt: '8px', pb: '8px', backgroundColor: 'white'}}>
+    <Box sx={{position: "sticky", zIndex: 99, top: '0px', height: "60px", pt: '8px', backgroundColor: 'white'}}>
       <Divider fullWidth sx={{backgroundColor: 'darkgrey'}} />
       <Stack
         flexDirection="row"
