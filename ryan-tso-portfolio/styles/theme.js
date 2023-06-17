@@ -42,13 +42,23 @@ export const theme = createTheme({
       background: '#f5f5f5',
       backing: '#df4069',
       educationBacking: '#a0a1ae'
-    }
+    },
+    skills: {
+      header: '#9aa7b0',
+      background: '#576067',
+      backgroundAlt: '#f4f7f8',
+      meterHeader: '#778e9f',
+      meterBackground: '#e0e7ec',
+      highlight: '#63dcc0',
+      text: '#293c4c'
+    },
   },
   typography: {
     fontFamily: 'Roboto',
     fontWeightLight: 100,
     fontWeightRegular: 300,
     fontWeightMedium: 400,
+    fontWeightBold: 700,
     navBar: {
       fontFamily: 'Roboto Condensed',
       fontWeightLight: 300,
@@ -59,6 +69,7 @@ export const theme = createTheme({
       fontWeightLight: 300,
       fontWeightRegular: 400,
       fontWeightMedium: 500,
+      fontWeightBold: 700,
     }
   },
   breakpoints: {

@@ -40,7 +40,7 @@ export default function Navbar() {
           ml: 'auto',
           mr: 'auto',
           width: "60%",
-          minWidth: '500px',
+          minWidth: '375px',
           maxWidth: '1000px',
           height: "100%",
         }}

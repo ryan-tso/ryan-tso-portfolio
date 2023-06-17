@@ -13,7 +13,7 @@ export default function Home() {
   const sectionHeaderStyle = {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
-    fontSize: '3rem',
+    fontSize: {xs:'2rem', sm:'2.5rem', md: '3rem'},
     ml: 'auto',
     mr: 'auto',
   }
@@ -29,6 +29,7 @@ export default function Home() {
 
       <Title />
       <Navbar />
+
       <Box sx={{width: '100%', height: '200px', backgroundColor: 'white'}} />
       <Box sx={{width: '100%', display: 'flex', backgroundColor: 'white'}}>
         <Typography sx={sectionHeaderStyle}>
@@ -36,6 +37,14 @@ export default function Home() {
         </Typography>
       </Box>
       <AboutMe />
+
+      <Box sx={{width: '100%', height: '200px', backgroundColor: 'white'}} />
+      <Box sx={{width: '100%', display: 'flex', backgroundColor: theme.palette.skills.header}}>
+        <Typography sx={{...sectionHeaderStyle, color: 'white'}}>
+          Skills
+        </Typography>
+      </Box>
+      <Skills />
 
 
 
