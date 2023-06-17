@@ -50,7 +50,8 @@ export default function AboutMe() {
         </Box>
 
         <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: '70%', p: '20px'}}>
-          <Fade fraction={0.5} triggerOnce>
+          <Slide direction="up">
+          <Fade fraction={0.5} duration={1000} triggerOnce>
           <Typography align='justify' sx={{
             fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
             fontWeight: 300,
@@ -64,6 +65,7 @@ export default function AboutMe() {
             solutions.
           </Typography>
           </Fade>
+          </Slide>
         </Box>
       </Box>
 
