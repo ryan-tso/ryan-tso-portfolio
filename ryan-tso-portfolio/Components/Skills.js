@@ -1,5 +1,4 @@
 import {Box, Divider, Stack, Typography, useTheme} from "@mui/material";
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import ScreenshotMonitorIcon from '@mui/icons-material/ScreenshotMonitor';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -49,6 +48,7 @@ export default function Skills() {
     position: 'relative',
     width: '30%',
     height: '100%',
+    alignItems: 'center',
     pr: '5px',
     backgroundColor: theme.palette.skills.highlight,
     transition: 'all 0.5s ease'
@@ -65,7 +65,7 @@ export default function Skills() {
         {name: "TypeScript", value: 0.5},
         {name: "React.js", value: 0.95},
         {name: "Next.js", value: 0.75},
-        {name: "Redux", value: 0.7},
+        {name: "Redux", value: 0.8},
         {name: "Material UI", value: 0.7}
       ]
     },
@@ -97,52 +97,53 @@ export default function Skills() {
   ]
 
   return (
-    <Slide direction="right">
-      <Box sx={{...sectionLayout, backgroundColor: theme.palette.skills.background}}>
-        <Slide direction="up">
-          <Stack sx={{...sectionInnerLayout, flexDirection: 'column', backgroundColor: theme.palette.skills.backgroundAlt}}>
-            <Stack direction="row" justifyContent="center" divider={<Divider orientation="vertical" flexItem/>} sx={{pb: '20px', pt: '20px'}}>
-              {
-                SKILLS.map((item, index) => (
-                  <Stack direction="column" justifyContent="flex-start" alignItems='center' sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}>
-                    <Typography sx={headerStyle}> {item.name} </Typography>
-                    <>{item.icon}</>
-                    {
-                      item.skills.map((skill, index) => (
-                          <Box skillValue={skill.value} onMouseOver={() => setExpertise(skill.value)} onMouseLeave={() => setExpertise(0)} sx={selectionStyle}>
-                            <Slide cascade direction="right">
-                            <Typography  sx={{...textStyle, fontSize: `${0.8 + skill.value/1.3}rem`}}>{skill.name}</Typography>
-                            </Slide>
-                          </Box>
-                      ))
-                    }
-                  </Stack>
-                ))
-              }
+    <Box sx={sectionLayout}>
+      <Slide direction="right">
+        <Box sx={{...sectionLayout, backgroundColor: theme.palette.skills.background}}>
+          <Slide direction="up">
+            <Stack sx={{...sectionInnerLayout, flexDirection: 'column', backgroundColor: theme.palette.skills.backgroundAlt}}>
+              <Stack direction="row" justifyContent="center" divider={<Divider orientation="vertical" flexItem/>} sx={{pb: '20px', pt: '20px'}}>
+                {
+                  SKILLS.map((item, index) => (
+                    <Stack direction="column" justifyContent="flex-start" alignItems='center' sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}>
+                      <Typography sx={headerStyle}> {item.name} </Typography>
+                      <>{item.icon}</>
+                      {
+                        item.skills.map((skill, index) => (
+                            <Box skillValue={skill.value} onMouseOver={() => setExpertise(skill.value)} onMouseLeave={() => setExpertise(0)} sx={selectionStyle}>
+                              <Slide cascade direction="up">
+                              <Typography  sx={{...textStyle, fontSize: `${0.5 + skill.value * 1.5}rem`}}>{skill.name}</Typography>
+                              </Slide>
+                            </Box>
+                        ))
+                      }
+                    </Stack>
+                  ))
+                }
+              </Stack>
+
+              <Box sx={{
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'row',
+                height: '30px',
+                backgroundColor: theme.palette.skills.meterBackground
+              }}>
+                <Box sx={{display: 'flex', flexDirection: 'row', position: 'relative', justifyContent: 'center', alignItems: 'center', width: '80px', backgroundColor: theme.palette.skills.meterHeader}}>
+                  <Typography sx={{color: 'white'}}>
+                    Expertise
+                  </Typography>
+                </Box>
+                <Box sx={{...meterStyle, width: `calc(${100 * expertise}% - 80px)`}}>
+                  <Typography sx={{ml: 'auto', color: theme.palette.skills.text}}>
+                    {100 * expertise}%
+                  </Typography>
+                </Box>
+              </Box>
             </Stack>
-
-            <Box sx={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'row',
-              height: '30px',
-              backgroundColor: theme.palette.skills.meterBackground
-            }}>
-              <Box sx={{display: 'flex', flexDirection: 'row', position: 'relative', justifyContent: 'center', alignItems: 'center', width: '80px', backgroundColor: theme.palette.skills.meterHeader}}>
-                <Typography sx={{color: 'white'}}>
-                  Expertise
-                </Typography>
-              </Box>
-              <Box sx={{...meterStyle, width: `calc(${100 * expertise}% - 80px)`}}>
-                <Typography sx={{ml: 'auto', color: theme.palette.skills.text}}>
-                  {100 * expertise}%
-                </Typography>
-              </Box>
-            </Box>
-
-          </Stack>
-        </Slide>
-      </Box>
-    </Slide>
+          </Slide>
+        </Box>
+      </Slide>
+    </Box>
   )
 }

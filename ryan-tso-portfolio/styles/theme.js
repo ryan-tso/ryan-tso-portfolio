@@ -52,6 +52,10 @@ export const theme = createTheme({
       highlight: '#63dcc0',
       text: '#293c4c'
     },
+    experience: {
+      background1: '#354b66',
+      background2: '#3f6c5a',
+    }
   },
   typography: {
     fontFamily: 'Roboto',

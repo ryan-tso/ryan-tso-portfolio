@@ -14,12 +14,24 @@ export default function Home() {
   // Use non SSR components since react-awesome-reveal not compatible
   const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
 
+  const headerContainerStyle = {
+    width: '100%',
+    display: 'flex',
+    backgroundColor: 'white'
+  }
+
   const sectionHeaderStyle = {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
     fontSize: {xs:'2rem', sm:'2.5rem', md: '3rem'},
     ml: 'auto',
     mr: 'auto',
+  }
+
+  const spacerStyle = {
+    width: '100%',
+    height: '40vh',
+    backgroundColor: 'white'
   }
 
   return (
@@ -33,23 +45,38 @@ export default function Home() {
       <Title />
       <Navbar />
 
-      <Box sx={{width: '100%', height: '200px', backgroundColor: 'white'}} />
-      <Box sx={{width: '100%', display: 'flex', backgroundColor: 'white'}}>
+      <Box sx={spacerStyle} />
+
+      <Box sx={headerContainerStyle}>
         <Typography sx={sectionHeaderStyle}>
           About Me
         </Typography>
       </Box>
       <AboutMe />
 
-      <Box sx={{width: '100%', height: '200px', backgroundColor: 'white'}} />
-      <Slide direction="left">
-        <Box sx={{width: '100%', display: 'flex', backgroundColor: theme.palette.skills.header}}>
-          <Typography sx={{...sectionHeaderStyle, color: 'white'}}>
-            Skills
-          </Typography>
+      <Box sx={spacerStyle} />
+
+      <Box sx={{...headerContainerStyle}}>
+        <Box sx={{width: '100%'}}>
+        <Slide direction="left">
+          <Box sx={{...headerContainerStyle, backgroundColor: theme.palette.skills.header}}>
+            <Typography sx={{...sectionHeaderStyle, color: 'white'}}>
+              Skills
+            </Typography>
+          </Box>
+        </Slide>
         </Box>
-      </Slide>
+      </Box>
       <Skills />
+
+      <Box sx={spacerStyle} />
+
+      <Box sx={headerContainerStyle}>
+        <Typography sx={sectionHeaderStyle}>
+          Experience
+        </Typography>
+      </Box>
+      <Experience />
 
       <Box sx={{height: '1000px', width: '100%', backgroundColor: "grey"}} />
 
