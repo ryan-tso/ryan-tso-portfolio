@@ -2,14 +2,27 @@ import Head from 'next/head'
 import {Box, Typography, useTheme} from "@mui/material";
 import { Title, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
 import {useDispatch} from "react-redux";
+import {useEffect, useRef} from 'react';
 import dynamic from "next/dynamic";
 import {Slide} from "react-awesome-reveal";
+import {useIsElementVisible} from "../Components/useIsElementVisible";
 
 
 
 export default function Home() {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const aboutRef = useRef(null);
+  const skillsRef = useRef(null);
+  const experienceRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactsRef = useRef(null);
+  const isAboutVisible = useIsElementVisible(aboutRef.current);
+  const isSkillsVisible = useIsElementVisible(skillsRef.current);
+  const isExperienceVisible = useIsElementVisible(experienceRef.current);
+  const isElementVisible = useIsElementVisible(projectsRef.current);
+  const isContactsVisible = useIsElementVisible(contactsRef.current);
+
 
   // Use non SSR components since react-awesome-reveal not compatible
   const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
@@ -47,6 +60,7 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
+
       <Box sx={headerContainerStyle}>
         <Typography sx={sectionHeaderStyle}>
           About Me
@@ -71,13 +85,14 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
-      <Box sx={headerContainerStyle}>
-        <Typography sx={sectionHeaderStyle}>
-          Experience
-        </Typography>
+      <Box>
+        <Box sx={headerContainerStyle}>
+          <Typography sx={sectionHeaderStyle}>
+            Experience
+          </Typography>
+        </Box>
+        <Experience />
       </Box>
-      <Experience />
-
       <Box sx={{height: '1000px', width: '100%', backgroundColor: "grey"}} />
 
 

@@ -50,7 +50,7 @@ export default function AboutMe() {
         </Box>
 
         <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: '70%', p: '20px'}}>
-          <Slide direction="up">
+          <Slide direction="up" triggerOnce>
           <Fade fraction={0.5} duration={1000} triggerOnce>
           <Typography align='justify' sx={{
             fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
@@ -70,13 +70,13 @@ export default function AboutMe() {
       </Box>
 
       <Box sx={{position:'relative', width: '100%', height: '100px', backgroundColor: theme.palette.aboutColor.background}}>
-        <Slide direction="right">
+        <Slide direction="right" triggerOnce>
           <Box sx={{position: 'relative', width: {xs: "100%", sm: '80%', md: '60%'}, ml: 'auto', backgroundColor: theme.palette.aboutColor.educationBacking}}>
             <Stack direction="row" spacing={2} sx={{ml: '10px', alignItems: 'center'}}>
               <SchoolIcon sx={{color: 'white', fontSize: '75px'}}/>
               <Stack direction="column">
-                <Fade>
-                  <Slide cascade damping={0.2} direction="right">
+                <Fade triggerOnce>
+                  <Slide cascade damping={0.2} direction="right" triggerOnce>
                     <Typography sx={{fontSize: {sm: '1rem', md: '1.5rem'}, fontWeight: 400, lineHeight: '20px', color: 'white'}}>Bachelor of Computer Science</Typography>
                     <Typography sx={{fontSize: {xs: '0.8rem', sm: '0.8rem', md: '1rem'}, fontWeight: 300, lineHeight: '20px', color: 'white'}}>2019 - 2023</Typography>
                     <Typography sx={{fontSize: {xs: '0.8rem', sm: '0.8rem', md: '1rem'}, fontWeight: 300, lineHeight: '20px', color: 'white'}}>University of British Columbia</Typography>

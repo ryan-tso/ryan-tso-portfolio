@@ -1,8 +1,25 @@
-import {Box, Divider, Stack, Typography, useTheme} from "@mui/material";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Stack,
+  Typography,
+  MobileStepper,
+  useTheme,
+  Button,
+  IconButton,
+  Slide as MuiSlide,
+  Fade,
+} from "@mui/material";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { sectionInnerLayout, sectionLayout } from "../styles/index";
-import {Bounce, Slide} from "react-awesome-reveal";
-import {useState} from "react";
+import {Slide} from "react-awesome-reveal";
+import {useEffect, useRef, useState} from "react";
 import bg from "../public/FarmPlot.jpg";
+import {useIsElementVisible} from "./useIsElementVisible";
 
 const EXPERIENCE = [
   {
@@ -13,19 +30,76 @@ const EXPERIENCE = [
       "measurement of agricultural environments, enabling farms to become 'smart' and allowing farmers to effectively " +
       "monitor and manage their farms to reduce waste and to optimize yield.",
     responsibilities: [
-
+      "Implemented the back-end RESTful API server using Python, Django Rest Framework, and MySQL which provided extensive " +
+      "models to company IOT devices and end-points to manage users, devices, data, telemetry, and organization information " +
+      "from the front-end cloud app or from the IOT devices themselves",
+      "Developed the front-end using JavaScript, React, Next.js, and Redux which allowed users to creat or join organizations, " +
+      "as well claim, manage, or view the data from the IOT devices for their organization in real time",
+      "Created and maintained comprehensive test suites for back-end API using Pytest and Postman API",
+      "Helped to develop QMS modules for in-house IoT device production that adheres to the requirements of ISO 9001",
+      "Constructed an intuitive roadmap for the company to become ISO 9001 certified",
     ],
     skills: [
-
+      "Python",
+      "Django Rest Framework",
+      "JavaScript",
+      "React",
+      "Redux",
+      "Next.js",
+      "Material UI",
+      "MySQL",
+    ]
+  },
+  {
+    company: "Organika Health Products Inc.",
+    role: "Quality Control Supervisor",
+    period: "2005 - 2013",
+    description: "Organika is a natural health supplements company specializing in manufacturing and distribution, " +
+      "providing the latest effective products that meet their customers daily needs.",
+    responsibilities: [
+      "Supervised the Quality team and laboratory and guided them on proper quality procedures and operations",
+      "Improved intra-department and inter-department effectiveness by designing and implementing SOPs integrating newer technologies",
+      "Responsible for transitioning the office to paperless which improved department efficiency by 50%",
+      "Participated in ISO 9001 and HACCP audits as the main point-man and acquired HACCP certification for the company",
+      "Practiced rigorous acceptance testing on a product to product basis that reduced non-compliance to 2%"
+    ],
+    skills: [
+      "Quality Control",
+      "Quality Assurance",
+      "Acceptance Testing",
+      "Auditing",
+      "GMP",
+      "ISO 9001",
+      "HACCP",
+      "Manufacturing",
     ]
   }
 ]
 
+const Slider = props => {
+return (
+  <MuiSlide
+    direction={props.direction ?? 'right'}
+    in={props.in ?? false}
+    container={props.container ?? null}
+    easing={{enter: 'cubic-bezier(.11, .3, .29, 1.15)', exit: 'cubic-bezier(.45, .07, .65, .37)'}}
+    timeout={props.timeout ?? 600}>
+    {props.children}
+  </MuiSlide>
+  )
+}
 
 export default function Experience() {
   const theme = useTheme();
+  const containerRef = useRef(null);
+  const isElementVisible = useIsElementVisible(containerRef.current, {root: null, rootMargin: '0px', threshold: 0.3});
 
+  const [stepperVisibility, setStepperVisibility] = useState(false);
   const [page, setPage] = useState(0);
+  const [elementIn, setElementIn] = useState(true);
+
+  const duration = 600;
+
 
   const companyNameStyle = {
     fontSize: '1.6rem',
@@ -41,7 +115,7 @@ export default function Experience() {
 
   const descriptionStyle = {
     fontFamily: theme.typography.sectionHeader,
-    fontSize: '1.2rem',
+    fontSize: {xs: '0.9rem', sm: '1rem', md:'1.2rem'},
     fontWeight: 300,
     lineHeight: '1.4rem',
     color: 'white',
@@ -54,53 +128,117 @@ export default function Experience() {
     mt: '-0.5rem',
   }
 
+  const listResponsibilityStyle = {
+    fontSize: {xs:'0.8rem', sm: '0.9rem', md: '1.1rem'},
+    fontWeight: 300,
+    color: 'white',
+  }
+
+  const listSkillStyle = {
+    fontSize: {xs:'1rem', sm: '1.1rem', md:'1.2rem'},
+    fontWeight: 100,
+    color: 'white'
+  }
+
+  const handleNext = () => {
+    setElementIn(false);
+    setTimeout(() => {
+      setPage(page + 1);
+      setElementIn(true);
+    }, duration)
+  }
+
+  const handleBack = () => {
+    setElementIn(false);
+    setTimeout(() => {
+      setPage(page - 1);
+      setElementIn(true);
+    }, duration)
+  }
+
   return (
     <>
       <Box sx={{position: 'fixed', top: 0, left: 0, zIndex: -1, backgroundImage: `url(${bg.src})`, backgroundSize: 'cover', height: '100vh', width: '100vw'}}/>
-      <Box sx={{...sectionLayout, backgroundColor: "transparent"}}>
-        <Stack spacing="1rem" sx={{...sectionInnerLayout, flexDirection: "column"}}>
-          <Box sx={{width: '100%', height: '125px', mt: '30px'}}>
-            <Slide cascade damping={0.1} direction="left">
-              <Box sx={{position: 'absolute', height: '125px', width: '100vw', right: 0,  backgroundColor: theme.palette.experience.background1}}/>
+      <Box ref={containerRef} sx={{...sectionLayout, backgroundColor: "transparent"}}>
+        <Stack spacing="1rem" sx={{...sectionInnerLayout, flexDirection: "column", pt: '30px', pb: '30px'}}>
+          <Slider direction="right" in={elementIn} container={containerRef.current}>
+          <Box sx={{width: '100%', height: '125px'}}>
+            <Slide damping={0.1} direction="left" triggerOnce>
+              <Box sx={{position: 'absolute', height: '125px', width: '100vw', right: 0,  backgroundColor: theme.palette.experience.background[page]}}/>
             </Slide>
             <Box sx={{position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%', pt: '5px', pb: '5px', pl: '20px', pr: '20px'}}>
-              <Slide cascade damping={0.1} direction="left">
+              <Slide cascade damping={0.1} direction="left" triggerOnce>
                   <Typography sx={companyNameStyle}> {EXPERIENCE[page].company} </Typography>
                   <Typography sx={roleStyle}> {EXPERIENCE[page].role} </Typography>
                   <Typography sx={companyNameStyle}> {EXPERIENCE[page].period} </Typography>
               </Slide>
             </Box>
           </Box>
-          <Slide direction='right'>
-            <Box sx={{position: 'relative', width: '100%', p: '20px', backgroundColor: theme.palette.experience.background1}}>
-              <Typography align="justify" sx={descriptionStyle}> {EXPERIENCE[page].description}</Typography>
+          </Slider>
+          <Slider direction="left" in={elementIn} container={containerRef.current}>
+            <Box>
+              <Slide direction='right' triggerOnce>
+                <Box sx={{position: 'relative', display: 'flex', alignItems: 'center', width: '100%', p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
+                  <Typography align="justify" sx={descriptionStyle}> {EXPERIENCE[page].description}</Typography>
+                </Box>
+              </Slide>
             </Box>
-          </Slide>
+          </Slider>
 
-          <Stack direction="row" spacing="1rem" sx={{position: 'relative', width: '100%', minHeight: '300px'}}>
-            <Box sx={{position: 'relative', width: '70%', height: '100%'}}>
-              <Slide direction="left">
-                <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background1}}>
-                  <Typography sx={headingStyle}> Responsibilities and Accomplishments: </Typography>
-                </Box>
-              </Slide>
-            </Box>
-            <Box sx={{position: 'relative', width: '30%', height: '100%'}}>
-              <Slide direction="up">
-                <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background1}}>
-                  <Typography sx={headingStyle}> Skills Developed: </Typography>
-                </Box>
-              </Slide>
-            </Box>
+          <Stack direction="row" spacing="1rem" sx={{position: 'relative', width: '100%'}}>
+            <Slider in={elementIn} container={containerRef.current}>
+              <Box sx={{position: 'relative', width: '70%', height: '100%'}}>
+                <Slide direction="left" triggerOnce>
+                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
+                    <Typography sx={headingStyle}> Responsibilities and Accomplishments: </Typography>
+                    <Box sx={{pl: '18px'}}>
+                      <List style={{listStyleType: 'disc'}}>
+                        {EXPERIENCE[page].responsibilities.map((item, index) => (<ListItemText primaryTypographyProps={listResponsibilityStyle} sx={{display: 'list-item', color: 'white'}}>{item}</ListItemText>))}
+                      </List>
+                    </Box>
+                  </Box>
+                </Slide>
+              </Box>
+            </Slider>
+            <Slider direction="up" in={elementIn} container={containerRef.current}>
+              <Box sx={{position: 'relative', width: '30%', height: '100%'}}>
+                <Slide direction="up" triggerOnce>
+                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
+                    <Typography sx={headingStyle}> Skills Developed: </Typography>
+                    <Box sx={{pl: '18px'}}>
+                      <List style={{listStyleType: 'disc'}}>
+                        {EXPERIENCE[page].skills.map((item, index) => (<ListItemText primaryTypographyProps={listSkillStyle} sx={{display: 'list-item', color: 'white'}} primary={item}/>))}
+                      </List>
+                    </Box>
+                  </Box>
+                </Slide>
+              </Box>
+            </Slider>
           </Stack>
 
         </Stack>
       </Box>
-      <Box sx={{display: 'flex', width: '100%', backgroundColor: 'white'}}>
-        <Box sx={{m: 'auto'}}>
-          oo
-        </Box>
-      </Box>
+        <Fade in={isElementVisible} timeout={500}>
+          <Box sx={{position: 'fixed', bottom: 0, display: 'flex', height: '60px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
+            <MobileStepper
+              position='relative'
+              variant="dots"
+              steps={EXPERIENCE.length}
+              activeStep={page}
+              sx={{m: 'auto'}}
+              nextButton={
+              <IconButton size="small" onClick={handleNext} disabled={page === EXPERIENCE.length-1}>
+                <KeyboardArrowRightIcon />
+              </IconButton>
+              }
+              backButton={
+              <IconButton size="small" onClick={handleBack} disabled={page === 0}>
+                <KeyboardArrowLeftIcon />
+              </IconButton>
+              }
+            />
+          </Box>
+        </Fade>
     </>
 
   )

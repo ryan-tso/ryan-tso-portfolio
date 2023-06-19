@@ -53,8 +53,7 @@ export const theme = createTheme({
       text: '#293c4c'
     },
     experience: {
-      background1: '#354b66',
-      background2: '#3f6c5a',
+      background: [ '#354b66', '#3f6c5a'],
     }
   },
   typography: {
