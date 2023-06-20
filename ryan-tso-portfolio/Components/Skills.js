@@ -5,10 +5,21 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import { sectionInnerLayout, sectionLayout } from "../styles/index";
 import {Slide} from "react-awesome-reveal";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {useEffect, useRef} from "react";
+import {useIsElementVisible} from "./useIsElementVisible";
+import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 
 
 export default function Skills() {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const ref = useRef(null);
+  const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+
+  useEffect(() => {
+    if (isElementVisible) dispatch(setScrollLocation('Skills'))
+  },[isElementVisible])
 
   const [expertise, setExpertise] = useState(0);
 
@@ -97,7 +108,7 @@ export default function Skills() {
   ]
 
   return (
-    <Box sx={sectionLayout}>
+    <Box ref={ref} sx={sectionLayout}>
       <Slide direction="right">
         <Box sx={{...sectionLayout, backgroundColor: theme.palette.skills.background}}>
           <Slide direction="up">
@@ -105,12 +116,12 @@ export default function Skills() {
               <Stack direction="row" justifyContent="center" divider={<Divider orientation="vertical" flexItem/>} sx={{pb: '20px', pt: '20px'}}>
                 {
                   SKILLS.map((item, index) => (
-                    <Stack direction="column" justifyContent="flex-start" alignItems='center' sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}>
+                    <Stack key={index} direction="column" justifyContent="flex-start" alignItems='center' sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}>
                       <Typography sx={headerStyle}> {item.name} </Typography>
                       <>{item.icon}</>
                       {
                         item.skills.map((skill, index) => (
-                            <Box skillValue={skill.value} onMouseOver={() => setExpertise(skill.value)} onMouseLeave={() => setExpertise(0)} sx={selectionStyle}>
+                            <Box key={index} onMouseOver={() => setExpertise(skill.value)} onMouseLeave={() => setExpertise(0)} sx={selectionStyle}>
                               <Slide cascade direction="up">
                               <Typography  sx={{...textStyle, fontSize: `${0.5 + skill.value * 1.5}rem`}}>{skill.name}</Typography>
                               </Slide>

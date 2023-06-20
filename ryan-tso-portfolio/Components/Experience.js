@@ -20,6 +20,8 @@ import {Slide} from "react-awesome-reveal";
 import {useEffect, useRef, useState} from "react";
 import bg from "../public/FarmPlot.jpg";
 import {useIsElementVisible} from "./useIsElementVisible";
+import {useDispatch} from "react-redux";
+import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 
 const EXPERIENCE = [
   {
@@ -91,15 +93,19 @@ return (
 
 export default function Experience() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const containerRef = useRef(null);
-  const isElementVisible = useIsElementVisible(containerRef.current, {root: null, rootMargin: '0px', threshold: 0.3});
+  const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+
+  useEffect(() => {
+    if (isElementVisible) dispatch(setScrollLocation('Experience'))
+  },[isElementVisible])
 
   const [stepperVisibility, setStepperVisibility] = useState(false);
   const [page, setPage] = useState(0);
   const [elementIn, setElementIn] = useState(true);
 
   const duration = 600;
-
 
   const companyNameStyle = {
     fontSize: '1.6rem',
@@ -140,6 +146,27 @@ export default function Experience() {
     color: 'white'
   }
 
+  const NavArrow = (props) => {
+    return (
+      <IconButton onClick={props.onClick} disabled={props.disabled} sx={{
+        position: {xs: 'none', sm:'absolute'},
+        ...(props.direction === 'right' ? {right: '10px'} : {left: '10px'}),
+        top: '50%',
+        width: {sm: '50px', md: '75px'},
+        height: {sm: '50px', md: '75px'},
+        zIndex: 1,
+        backgroundColor: 'rgba(255,255,255,0.4)'}}>
+        {
+          props.direction === 'right' && !props.disabled &&
+            <KeyboardArrowRightIcon sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
+        }
+        { props.direction !== 'right' && !props.disabled &&
+          <KeyboardArrowLeftIcon onClick={handleBack} disabled={page === 0} sx={{fontSize:{sm: '4rem', md: '7rem'}}}/>
+        }
+      </IconButton>
+    )
+  }
+
   const handleNext = () => {
     setElementIn(false);
     setTimeout(() => {
@@ -160,6 +187,8 @@ export default function Experience() {
     <>
       <Box sx={{position: 'fixed', top: 0, left: 0, zIndex: -1, backgroundImage: `url(${bg.src})`, backgroundSize: 'cover', height: '100vh', width: '100vw'}}/>
       <Box ref={containerRef} sx={{...sectionLayout, backgroundColor: "transparent"}}>
+        <NavArrow direction="left" onClick={handleBack} disabled={page === 0} />
+        <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length-1} />
         <Stack spacing="1rem" sx={{...sectionInnerLayout, flexDirection: "column", pt: '30px', pb: '30px'}}>
           <Slider direction="right" in={elementIn} container={containerRef.current}>
           <Box sx={{width: '100%', height: '125px'}}>
@@ -193,7 +222,7 @@ export default function Experience() {
                     <Typography sx={headingStyle}> Responsibilities and Accomplishments: </Typography>
                     <Box sx={{pl: '18px'}}>
                       <List style={{listStyleType: 'disc'}}>
-                        {EXPERIENCE[page].responsibilities.map((item, index) => (<ListItemText primaryTypographyProps={listResponsibilityStyle} sx={{display: 'list-item', color: 'white'}}>{item}</ListItemText>))}
+                        {EXPERIENCE[page].responsibilities.map((item, index) => (<ListItemText key={index} primaryTypographyProps={listResponsibilityStyle} sx={{display: 'list-item', color: 'white'}}>{item}</ListItemText>))}
                       </List>
                     </Box>
                   </Box>
@@ -207,7 +236,7 @@ export default function Experience() {
                     <Typography sx={headingStyle}> Skills Developed: </Typography>
                     <Box sx={{pl: '18px'}}>
                       <List style={{listStyleType: 'disc'}}>
-                        {EXPERIENCE[page].skills.map((item, index) => (<ListItemText primaryTypographyProps={listSkillStyle} sx={{display: 'list-item', color: 'white'}} primary={item}/>))}
+                        {EXPERIENCE[page].skills.map((item, index) => (<ListItemText key={index} primaryTypographyProps={listSkillStyle} sx={{display: 'list-item', color: 'white'}} primary={item}/>))}
                       </List>
                     </Box>
                   </Box>
@@ -219,9 +248,9 @@ export default function Experience() {
         </Stack>
       </Box>
         <Fade in={isElementVisible} timeout={500}>
-          <Box sx={{position: 'fixed', bottom: 0, display: 'flex', height: '60px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
+          <Box sx={{position: 'fixed', zIndex: 2, bottom: 0, display: 'flex', height: '60px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
             <MobileStepper
-              position='relative'
+              position='static'
               variant="dots"
               steps={EXPERIENCE.length}
               activeStep={page}

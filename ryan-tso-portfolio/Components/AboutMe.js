@@ -4,13 +4,24 @@ import { sectionInnerLayout, sectionLayout } from "../styles/index";
 import SchoolIcon from '@mui/icons-material/School';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Image from "next/image";
+import {useRef, useEffect} from "react";
+import {useIsElementVisible} from "./useIsElementVisible";
+import {useDispatch} from "react-redux";
+import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 
 
 export default function AboutMe() {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const ref = useRef(null);
+  const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+
+  useEffect(() => {
+    if (isElementVisible) dispatch(setScrollLocation('About Me'))
+  },[isElementVisible])
 
   return (
-    <Box sx={{...sectionLayout, backgroundColor: theme.palette.aboutColor.background}}>
+    <Box ref={ref} sx={{...sectionLayout, backgroundColor: theme.palette.aboutColor.background}}>
       <Box sx={sectionInnerLayout}>
         <Box sx={{position: 'relative', width: '30%', minWidth: '150px'}}>
           <Box sx={{

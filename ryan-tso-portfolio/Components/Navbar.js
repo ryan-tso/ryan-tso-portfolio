@@ -1,9 +1,11 @@
-import {Box, Divider, Grow, Slide, Stack, Typography, useTheme, Zoom} from "@mui/material";
+import {Box, Button, Divider, Grow, Slide, Stack, Typography, useTheme, Zoom} from "@mui/material";
 import {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 
-const SECTIONS = ["About Me", "Skills", "Experience", "Projects", "Contact"]
+import ScrollIntoView from 'react-scroll-into-view';
+
+
 
 
 export default function Navbar() {
@@ -11,7 +13,8 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const selection = useSelector((state) => state.scrollLocation.value)
-  // const [selection, setSelection] = useState("");
+
+  const SECTIONS = ["About Me", "Skills", "Experience", "Projects", "Contact"]
 
   const buttonStyle = {
     fontFamily: theme.typography.navBar,
@@ -24,14 +27,14 @@ export default function Navbar() {
     },
   }
 
-  const select = (e) => {
-    // setSelection(e.currentTarget.textContent);
-    dispatch(setScrollLocation(e.currentTarget.textContent));
-  }
+  // const select = (e) => {
+  //   // setSelection(e.currentTarget.textContent);
+  //   dispatch(setScrollLocation(e.currentTarget.textContent));
+  // }
 
   return (
     <Box sx={{position: "sticky", zIndex: 99, top: '0px', height: "60px", pt: '8px', pb: '1px', backgroundColor: 'white'}}>
-      <Divider fullWidth sx={{backgroundColor: 'darkgrey'}} />
+      <Divider sx={{backgroundColor: 'darkgrey'}} />
       <Stack
         flexDirection="row"
         alignItems="center"
@@ -48,17 +51,17 @@ export default function Navbar() {
         {
           SECTIONS.map((item, index) => (
             <Stack key={index} flexDirection="column" alignItems="center">
-              <Typography onClick={select} sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : ''}}>{item}</Typography>
-              {selection === item &&
-                <Zoom in easing={{enter: "ease-in", exit: "linear"}}>
+              <ScrollIntoView selector={'#' + item.toLowerCase().replace(/\s/g, '')}>
+              <Typography sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : 'black'}}>{item}</Typography>
+                <Zoom in={selection === item} easing={{enter: "ease-in", exit: "linear"}}>
                   <Box sx={{height: '2px', width: '110%', mt: '-4px', borderRadius: '3px', backgroundColor: theme.palette.title.text}} />
                 </Zoom>
-              }
+              </ScrollIntoView>
             </Stack>
           ))
         }
       </Stack>
-      <Divider fullWidth sx={{backgroundColor: 'darkgrey'}} />
+      <Divider sx={{backgroundColor: 'darkgrey'}} />
     </Box>
   )
   }

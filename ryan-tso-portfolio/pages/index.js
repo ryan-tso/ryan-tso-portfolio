@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import {Box, Typography, useTheme} from "@mui/material";
-import { Title, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
+import { Title, AboutMe, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
 import {useDispatch} from "react-redux";
 import {useEffect, useRef} from 'react';
 import dynamic from "next/dynamic";
@@ -12,12 +12,11 @@ import {useIsElementVisible} from "../Components/useIsElementVisible";
 export default function Home() {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const experienceRef = useRef(null);
   const projectsRef = useRef(null);
   const contactsRef = useRef(null);
-  const isAboutVisible = useIsElementVisible(aboutRef.current);
+
   const isSkillsVisible = useIsElementVisible(skillsRef.current);
   const isExperienceVisible = useIsElementVisible(experienceRef.current);
   const isElementVisible = useIsElementVisible(projectsRef.current);
@@ -25,12 +24,15 @@ export default function Home() {
 
 
   // Use non SSR components since react-awesome-reveal not compatible
-  const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
+  // const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
+
+
 
   const headerContainerStyle = {
     width: '100%',
     display: 'flex',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    pt: '60px',
   }
 
   const sectionHeaderStyle = {
@@ -43,7 +45,7 @@ export default function Home() {
 
   const spacerStyle = {
     width: '100%',
-    height: '40vh',
+    height: '30vh',
     backgroundColor: 'white'
   }
 
@@ -61,7 +63,7 @@ export default function Home() {
       <Box sx={spacerStyle} />
 
 
-      <Box sx={headerContainerStyle}>
+      <Box id="aboutme" sx={headerContainerStyle}>
         <Typography sx={sectionHeaderStyle}>
           About Me
         </Typography>
@@ -70,10 +72,11 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
+      <Box id="skills" />
       <Box sx={{...headerContainerStyle}}>
         <Box sx={{width: '100%'}}>
         <Slide direction="left">
-          <Box sx={{...headerContainerStyle, backgroundColor: theme.palette.skills.header}}>
+          <Box sx={{display: 'flex', backgroundColor: theme.palette.skills.header}}>
             <Typography sx={{...sectionHeaderStyle, color: 'white'}}>
               Skills
             </Typography>
@@ -85,14 +88,13 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
-      <Box>
-        <Box sx={headerContainerStyle}>
-          <Typography sx={sectionHeaderStyle}>
-            Experience
-          </Typography>
-        </Box>
-        <Experience />
+      <Box id="experience" sx={headerContainerStyle}>
+        <Typography sx={sectionHeaderStyle}>
+          Experience
+        </Typography>
       </Box>
+      <Experience />
+
       <Box sx={{height: '1000px', width: '100%', backgroundColor: "grey"}} />
 
 

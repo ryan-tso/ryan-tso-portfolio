@@ -109,4 +109,7 @@ export const theme = createTheme({
       checkoutTiny: 372,
     },
   },
+  rootMargins: {
+    scrollInViewSection: '-50% 0px -50% 0px'
+  },
 })
