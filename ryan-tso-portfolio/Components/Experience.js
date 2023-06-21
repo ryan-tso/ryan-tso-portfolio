@@ -18,14 +18,20 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { sectionInnerLayout, sectionLayout } from "../styles/index";
 import {Slide} from "react-awesome-reveal";
 import {useEffect, useRef, useState} from "react";
-import bg from "../public/FarmPlot.jpg";
+import EnsemblePic from "../public/FarmPlot.jpg";
+import OrganikaPic from "../public/OrganikaPic.jpg";
 import {useIsElementVisible} from "./useIsElementVisible";
 import {useDispatch} from "react-redux";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 
+const BACKGROUND = [
+  `url(${OrganikaPic.src})`
+]
+
 const EXPERIENCE = [
   {
     company: "Ensemble Scientific",
+    picture: `url(${EnsemblePic.src})`,
     role: "Full-Stack-Developer",
     period: "2021 - 2022",
     description: "Ensemble Scientific is a company that produces IoT sensors and devices used primarily in the " +
@@ -54,6 +60,7 @@ const EXPERIENCE = [
   },
   {
     company: "Organika Health Products Inc.",
+    picture: `url(${OrganikaPic.src})`,
     role: "Quality Control Supervisor",
     period: "2005 - 2013",
     description: "Organika is a natural health supplements company specializing in manufacturing and distribution, " +
@@ -149,13 +156,14 @@ export default function Experience() {
   const NavArrow = (props) => {
     return (
       <IconButton onClick={props.onClick} disabled={props.disabled} sx={{
-        position: {xs: 'none', sm:'absolute'},
-        ...(props.direction === 'right' ? {right: '10px'} : {left: '10px'}),
-        top: '50%',
+        position: 'absolute',
+        display: {xs: 'none', sm:'flex'},
+        ...(props.direction === 'right' ? {right: '0px'} : {left: '0px'}),
         width: {sm: '50px', md: '75px'},
-        height: {sm: '50px', md: '75px'},
+        height: '100%',
+        borderRadius: '0px',
         zIndex: 1,
-        backgroundColor: 'rgba(255,255,255,0.4)'}}>
+        backgroundColor: 'rgba(255,255,255,0.3)'}}>
         {
           props.direction === 'right' && !props.disabled &&
             <KeyboardArrowRightIcon sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
@@ -185,7 +193,7 @@ export default function Experience() {
 
   return (
     <>
-      <Box sx={{position: 'fixed', top: 0, left: 0, zIndex: -1, backgroundImage: `url(${bg.src})`, backgroundSize: 'cover', height: '100vh', width: '100vw'}}/>
+      <Box sx={{position: 'fixed', top: 0, left: 0, zIndex: -1, backgroundImage: EXPERIENCE[page].picture, backgroundSize: 'cover', height: '100vh', width: '100vw', transition: 'background-image 0.8s ease'}}/>
       <Box ref={containerRef} sx={{...sectionLayout, backgroundColor: "transparent"}}>
         <NavArrow direction="left" onClick={handleBack} disabled={page === 0} />
         <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length-1} />
@@ -248,7 +256,7 @@ export default function Experience() {
         </Stack>
       </Box>
         <Fade in={isElementVisible} timeout={500}>
-          <Box sx={{position: 'fixed', zIndex: 2, bottom: 0, display: 'flex', height: '60px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
+          <Box sx={{position: 'fixed', zIndex: 2, bottom: 0, display: 'flex', height: '50px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
             <MobileStepper
               position='static'
               variant="dots"

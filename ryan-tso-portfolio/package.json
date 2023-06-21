@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
+    "@react-spring/parallax": "^9.7.2",
     "@react-spring/web": "^9.7.2",
     "@reduxjs/toolkit": "^1.9.5",
     "next": "13.4.5",
@@ -20,7 +21,8 @@
     "react-awesome-reveal": "^4.1.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.1.0",
-    "react-scroll-into-view": "^1.12.1"
+    "react-scroll-into-view": "^1.12.1",
+    "react-scroll-parallax": "^3.4.2"
   },
   "devDependencies": {
     "eslint": "8.42.0",

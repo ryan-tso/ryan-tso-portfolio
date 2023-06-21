@@ -95,6 +95,8 @@ export default function Home() {
       </Box>
       <Experience />
 
+      <Projects />
+
       <Box sx={{height: '1000px', width: '100%', backgroundColor: "grey"}} />
 
 

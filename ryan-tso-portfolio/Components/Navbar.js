@@ -1,8 +1,5 @@
-import {Box, Button, Divider, Grow, Slide, Stack, Typography, useTheme, Zoom} from "@mui/material";
-import {useState} from "react";
+import {Box, Divider, Stack, Typography, useTheme, Zoom} from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
-import { setScrollLocation } from '../redux/features/navigation/scroll-location';
-
 import ScrollIntoView from 'react-scroll-into-view';
 
 
@@ -26,11 +23,6 @@ export default function Navbar() {
       cursor: 'pointer',
     },
   }
-
-  // const select = (e) => {
-  //   // setSelection(e.currentTarget.textContent);
-  //   dispatch(setScrollLocation(e.currentTarget.textContent));
-  // }
 
   return (
     <Box sx={{position: "sticky", zIndex: 99, top: '0px', height: "60px", pt: '8px', pb: '1px', backgroundColor: 'white'}}>

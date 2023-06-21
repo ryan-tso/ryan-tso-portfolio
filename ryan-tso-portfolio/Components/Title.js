@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Head from 'next/head';
 import {Box, Button, Stack, Typography, useTheme} from "@mui/material";
-import { styled } from '@mui/material';
+import ScrollIntoView from 'react-scroll-into-view';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {useState} from "react";
@@ -39,27 +38,33 @@ export default function Title() {
             >
               Welcome to everything about me
             </Typography>
-            <Button
-              variant="outlined"
-              endIcon={hovering ? <ArrowDropDownIcon/> : <ArrowRightIcon />}
-              onMouseOver={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-              sx={{
-                width: '20%',
-                mt: '20px',
-                borderRadius: '0px',
-                color: theme.palette.title.text,
-                borderColor: theme.palette.title.text,
-                fontFamily: theme.typography.sectionHeader,
-                transition: 'all 0.5 ease-in-out',
-                "&:hover": {
-                  backgroundColor: theme.palette.title.text,
-                  borderColor: theme.palette.title.text,
-                  color: 'white',
-                }
-            }}>
-              Start
-            </Button>
+            <Box sx={{width: '20%', mt: '20px',}}>
+              <ScrollIntoView selector='#aboutme'>
+                <Button
+                  variant="outlined"
+                  endIcon={<ArrowRightIcon className='arrowIcon' sx={{transition: 'transform 0.3s ease'}} />}
+                  sx={{
+                    width: '100%',
+                    borderRadius: '0px',
+                    color: theme.palette.title.text,
+                    borderColor: theme.palette.title.text,
+                    fontFamily: theme.typography.sectionHeader,
+                    transition: 'all 0.4s ease',
+                    "&:hover": {
+                      backgroundColor: theme.palette.title.text,
+                      borderColor: theme.palette.title.text,
+                      color: 'white',
+                      "& .arrowIcon": {
+                        transform: 'rotate(90deg)',
+                        transition: 'transform 0.3s ease'
+                      }
+                    }
+                }}
+                >
+                  Start
+                </Button>
+              </ScrollIntoView>
+            </Box>
           </Stack>
         </Box>
       </Box>
