@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {useEffect, useRef} from 'react';
 import dynamic from "next/dynamic";
 import {Slide} from "react-awesome-reveal";
-import {useIsElementVisible} from "../Components/useIsElementVisible";
+import {useIsElementVisible} from "../Components/Hooks/useIsElementVisible";
 
 
 
@@ -25,7 +25,6 @@ export default function Home() {
 
   // Use non SSR components since react-awesome-reveal not compatible
   // const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
-
 
 
   const headerContainerStyle = {
@@ -95,6 +94,13 @@ export default function Home() {
       </Box>
       <Experience />
 
+      <Box sx={spacerStyle} />
+
+      <Box id="projects" sx={headerContainerStyle}>
+        <Typography sx={sectionHeaderStyle}>
+          Projects
+        </Typography>
+      </Box>
       <Projects />
 
       <Box sx={{height: '1000px', width: '100%', backgroundColor: "grey"}} />

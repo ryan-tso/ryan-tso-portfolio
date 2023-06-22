@@ -7,7 +7,7 @@ import {Slide} from "react-awesome-reveal";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {useEffect, useRef} from "react";
-import {useIsElementVisible} from "./useIsElementVisible";
+import {useIsElementVisible} from "./Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 
 

@@ -20,9 +20,10 @@ import {Slide} from "react-awesome-reveal";
 import {useEffect, useRef, useState} from "react";
 import EnsemblePic from "../public/FarmPlot.jpg";
 import OrganikaPic from "../public/OrganikaPic.jpg";
-import {useIsElementVisible} from "./useIsElementVisible";
-import {useDispatch} from "react-redux";
+import {useIsElementVisible} from "./Hooks/useIsElementVisible";
+import {useDispatch, useSelector} from "react-redux";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
+import ScrollIntoView from "react-scroll-into-view";
 
 const BACKGROUND = [
   `url(${OrganikaPic.src})`
@@ -101,6 +102,7 @@ return (
 export default function Experience() {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const selection = useSelector((state) => state.scrollLocation.value)
   const containerRef = useRef(null);
   const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: theme.rootMargins.scrollInViewSection});
 
@@ -108,7 +110,6 @@ export default function Experience() {
     if (isElementVisible) dispatch(setScrollLocation('Experience'))
   },[isElementVisible])
 
-  const [stepperVisibility, setStepperVisibility] = useState(false);
   const [page, setPage] = useState(0);
   const [elementIn, setElementIn] = useState(true);
 
@@ -195,8 +196,10 @@ export default function Experience() {
     <>
       <Box sx={{position: 'fixed', top: 0, left: 0, zIndex: -1, backgroundImage: EXPERIENCE[page].picture, backgroundSize: 'cover', height: '100vh', width: '100vw', transition: 'background-image 0.8s ease'}}/>
       <Box ref={containerRef} sx={{...sectionLayout, backgroundColor: "transparent"}}>
-        <NavArrow direction="left" onClick={handleBack} disabled={page === 0} />
-        <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length-1} />
+        <ScrollIntoView selector='#experience'>
+          <NavArrow direction="left" onClick={handleBack} disabled={page === 0} />
+          <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length-1} />
+        </ScrollIntoView>
         <Stack spacing="1rem" sx={{...sectionInnerLayout, flexDirection: "column", pt: '30px', pb: '30px'}}>
           <Slider direction="right" in={elementIn} container={containerRef.current}>
           <Box sx={{width: '100%', height: '125px'}}>
@@ -255,8 +258,9 @@ export default function Experience() {
 
         </Stack>
       </Box>
-        <Fade in={isElementVisible} timeout={500}>
+        <Fade in={isElementVisible && selection === "Experience"} timeout={500}>
           <Box sx={{position: 'fixed', zIndex: 2, bottom: 0, display: 'flex', height: '50px', width: '100%', boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)', backgroundColor: 'white', transition: 'all 1s ease'}}>
+
             <MobileStepper
               position='static'
               variant="dots"
@@ -264,16 +268,21 @@ export default function Experience() {
               activeStep={page}
               sx={{m: 'auto'}}
               nextButton={
-              <IconButton size="small" onClick={handleNext} disabled={page === EXPERIENCE.length-1}>
-                <KeyboardArrowRightIcon />
-              </IconButton>
+                <ScrollIntoView selector='#experience'>
+                  <IconButton size="small" onClick={handleNext} disabled={page === EXPERIENCE.length-1}>
+                    <KeyboardArrowRightIcon />
+                  </IconButton>
+                </ScrollIntoView>
               }
               backButton={
-              <IconButton size="small" onClick={handleBack} disabled={page === 0}>
-                <KeyboardArrowLeftIcon />
-              </IconButton>
+                <ScrollIntoView selector='#experience'>
+                  <IconButton size="small" onClick={handleBack} disabled={page === 0}>
+                    <KeyboardArrowLeftIcon />
+                  </IconButton>
+                </ScrollIntoView>
               }
             />
+
           </Box>
         </Fade>
     </>
