@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {useEffect, useRef} from 'react';
 import dynamic from "next/dynamic";
 import {Slide} from "react-awesome-reveal";
-import {useIsElementVisible} from "../Components/Hooks/useIsElementVisible";
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 
 
 

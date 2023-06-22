@@ -7,7 +7,7 @@ import ProjectCard from './ProjectCard';
 import AWExpressPic from "../public/AWExpressPic.jpg";
 import PortfolioPic from "../public/PortfolioPic.jpg";
 import ProgrammingPic from "../public/ProgrammingPic.jpg";
-import {useIsElementVisible} from "./Hooks/useIsElementVisible";
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 import {useDispatch} from "react-redux";
 

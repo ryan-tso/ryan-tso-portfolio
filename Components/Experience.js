@@ -20,7 +20,7 @@ import {Slide} from "react-awesome-reveal";
 import {useEffect, useRef, useState} from "react";
 import EnsemblePic from "../public/FarmPlot.jpg";
 import OrganikaPic from "../public/OrganikaPic.jpg";
-import {useIsElementVisible} from "./Hooks/useIsElementVisible";
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {useDispatch, useSelector} from "react-redux";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 import ScrollIntoView from "react-scroll-into-view";

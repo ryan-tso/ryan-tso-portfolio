@@ -5,7 +5,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Image from "next/image";
 import {useRef, useEffect} from "react";
-import {useIsElementVisible} from "./Hooks/useIsElementVisible";
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {useDispatch} from "react-redux";
 import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 import Link from "next/link";
