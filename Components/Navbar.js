@@ -35,7 +35,7 @@ export default function Navbar() {
   const contentContainerStyle = {
     ml: 'auto',
     mr: 'auto',
-    width: "60%",
+    width: {xs: '100%', sm: '80%', md:'60%'},
     minWidth: '375px',
     maxWidth: '1000px',
     height: "100%",

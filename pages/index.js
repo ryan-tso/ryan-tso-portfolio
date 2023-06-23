@@ -134,8 +134,8 @@ export default function Home() {
 
       <Box id="contact" sx={{...headerContainerStyle, color: 'white'}}>
         <Box sx={{width: '100%', backgroundColor: theme.palette.contact.background, overflow: 'hidden'}}>
-          <Slide direction="right">
-            <Fade>
+          <Slide direction="right" triggerOnce>
+            <Fade triggerOnce>
               <Box sx={{...sectionInnerLayout, }}>
                 <Typography sx={{...sectionHeaderStyle, ml: {xs: '10%', sm: 0}}}>
                   Contact

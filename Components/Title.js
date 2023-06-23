@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {Box, Button, Stack, Typography, useTheme} from "@mui/material";
@@ -7,6 +6,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from "../redux/features/navigation/scroll-location";
 import { sectionInnerLayout } from "../pages/index";
+import TitleImage from "../public/TitleBackground.jpg";
 
 export default function Title() {
   const theme = useTheme();
@@ -17,6 +17,14 @@ export default function Title() {
   useEffect(() => {
     if (isElementVisible) dispatch(setScrollLocation('Title'))
   }, [isElementVisible])
+
+  const titleImageStyle = {
+    position: 'absolute',
+    backgroundImage: `url(${TitleImage.src})`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    width: '100vw',
+  }
 
   const bigLetterStyle = {
     fontWeight: "light",
@@ -68,13 +76,7 @@ export default function Title() {
 
   return (
     <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px'}}>
-      <Image
-        layout="fill"
-        objectFit='cover'
-        priority={true}
-        quality={100}
-        src="/../public/TitleBackground.jpg"
-        alt="TitleBackground"/>
+      <Box sx={titleImageStyle}/>
       <Box sx={{...sectionInnerLayout, flexDirection: 'column'}}>
         <Stack direction="column" alignItems='flex-end' sx={{position: "relative", width: '250px', top: "11%", left: "10%"}}>
           <Stack direction="row" sx={{position: "relative", alignItems: "end"}}>

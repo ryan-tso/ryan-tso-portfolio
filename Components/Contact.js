@@ -95,8 +95,8 @@ export default function Contact() {
           {
             INFO.map((item, index) => (
               <Grid key={index} item>
-                <Slide direcction="left" cascade>
-                  <Fade>
+                <Slide direcction="left" cascade triggerOnce>
+                  <Fade triggerOnce>
                     <ConditionalLink link={item.url} condition={item.url}>
                       <Box sx={buttonStyle}>
                         <Icon sx={iconStyle}> {item.icon} </Icon>

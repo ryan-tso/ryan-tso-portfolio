@@ -9,8 +9,34 @@ import { Fade, Slide } from "react-awesome-reveal";
 import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 import { sectionInnerLayout, sectionLayout } from "../pages/index";
+import RyanPic from "../public/RyanPic.jpg";
 
 
+const photoStyle = {
+  position: 'relative',
+  top: '20px',
+  display: 'flex',
+  zIndex: 3,
+  height: 0,
+  width: '95%',
+  paddingBottom: '95%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  boxShadow: 5,
+  backgroundImage: `url(${RyanPic.src})`,
+  backgroundSize: 'cover',
+}
+
+const photoBackingStyle = {
+  position: 'relative',
+  display: 'flex',
+  zIndex: 2,
+  mt: "-75px",
+  height: '200px',
+  width: '100vw',
+  float: 'right',
+  background: `linear-gradient(32deg, #df4069 60%, #f07a47 100%)`
+}
 
 export default function AboutMe() {
   const theme = useTheme();
@@ -26,36 +52,9 @@ export default function AboutMe() {
     <Box ref={ref} sx={{...sectionLayout, backgroundColor: theme.palette.aboutColor.background}}>
       <Box sx={sectionInnerLayout}>
         <Box sx={{position: 'relative', width: '30%', minWidth: '150px'}}>
-          <Box sx={{
-            position: 'relative',
-            top: '20px',
-            display: 'flex',
-            zIndex: 3,
-            height: 0,
-            width: '95%',
-            paddingBottom: '95%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: 5
-          }}>
-            <Image
-              layout="fill"
-              objectFit='cover'
-              priority={true}
-              quality={100}
-              src="/../public/RyanPic.jpg"
-              alt="Ryan's Picture"/>
-          </Box>
+          <Box sx={photoStyle} />
           <Slide direction="left" triggerOnce>
-            <Box sx={{
-              position: 'relative',
-              display: 'flex',
-              zIndex: 2,
-              mt: "-75px",
-              height: '200px',
-              width: '100vw',
-              float: 'right',
-              background: `linear-gradient(32deg, ${theme.palette.aboutColor.backing} 60%, #f07a47 100%)`}}>
+            <Box sx={photoBackingStyle}>
               <Stack direction='column' sx={{position: 'relative', ml: 'auto', mt: 'auto', p: '5px', alignItems: 'flex-end'}}>
                 <Slide cascade damping={0.1} direction="left" triggerOnce>
                   <Link href="/files/RyanResume.pdf" locale={false} rel="noopener noreferrer" target="_blank">
@@ -92,7 +91,7 @@ export default function AboutMe() {
       </Box>
       <Box sx={{position:'relative', width: '100%', height: '100px', backgroundColor: theme.palette.aboutColor.background}}>
         <Slide direction="right">
-          <Box sx={{position: 'relative', width: {xs: "100%", sm: '80%', md: '60%'}, ml: 'auto', backgroundColor: theme.palette.aboutColor.educationBacking}}>
+          <Box sx={{position: 'relative', width: {xs: "100%", sm: '80%', md: '60%', lg: '50%'}, ml: 'auto', backgroundColor: theme.palette.aboutColor.educationBacking}}>
             <Stack direction="row" spacing={2} sx={{ml: '10px', alignItems: 'center'}}>
               <SchoolIcon sx={{color: 'white', fontSize: '75px'}}/>
               <Stack direction="column">
