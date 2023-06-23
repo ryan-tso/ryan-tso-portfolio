@@ -77,11 +77,10 @@ export default function Title() {
 
   return (
     <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px'}}>
-      {/*<Box sx={titleImageStyle}/>*/}
       <Image
         src={TitleImage}
         fill
-        priority={true}
+        priority
         alt="Title Background"
         style={{objectFit:'cover'}}
       />

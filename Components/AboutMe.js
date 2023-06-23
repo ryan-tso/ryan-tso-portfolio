@@ -54,7 +54,7 @@ export default function AboutMe() {
             <Image
               src={RyanPic}
               fill
-              priority={true}
+              priority
               quality={100}
               alt="Title Background"
               style={{objectFit: 'cover'}}
