@@ -1,14 +1,15 @@
-import {Box, IconButton, Stack, Typography, useTheme} from "@mui/material";
-import { Fade, Slide } from "react-awesome-reveal";
-import { sectionInnerLayout, sectionLayout } from "../styles/index";
+import Image from "next/image";
+import Link from "next/link";
+import { useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Box, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import SchoolIcon from '@mui/icons-material/School';
 import DescriptionIcon from '@mui/icons-material/Description';
-import Image from "next/image";
-import {useRef, useEffect} from "react";
-import {useIsElementVisible} from "../Hooks/useIsElementVisible";
-import {useDispatch} from "react-redux";
+import { Fade, Slide } from "react-awesome-reveal";
+import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from '../redux/features/navigation/scroll-location';
-import Link from "next/link";
+import { sectionInnerLayout, sectionLayout } from "../pages/index";
+
 
 
 export default function AboutMe() {
@@ -70,27 +71,25 @@ export default function AboutMe() {
             </Box>
           </Slide>
         </Box>
-
         <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: '70%', p: '20px'}}>
           <Slide direction="up" triggerOnce>
           <Fade fraction={0.5} duration={1000} triggerOnce>
-          <Typography align='justify' sx={{
-            fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
-            fontWeight: 300,
-            color: theme.palette.aboutColor.text,
-          }}>
-            I'm a recent graduate who is passionate about creating interactive, easy-to-use, and effective
-            full-stack web applications. <br/> <br/>I specialize in JavaScript, React, Next.js, and RESTful APIs along with a myriad of
-            backend technology; though if there is tech that I'm not familiar with, it won't take long for me to pick it up! <br/> <br/>
-            Being a freelance artist on the side, I am highly critical of my own work, which is why I give it my all when it
-            comes to the appearance and functionality of what I produce as well as the effectiveness of translating requirements to
-            solutions.
-          </Typography>
+            <Typography align='justify' sx={{
+              fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
+              fontWeight: 300,
+              color: theme.palette.aboutColor.text,
+            }}>
+              I'm a recent graduate who is passionate about creating interactive, easy-to-use, and effective
+              full-stack web applications. <br/> <br/>I specialize in JavaScript, React, Next.js, and RESTful APIs along
+              with a myriad of backend technology; though if there is tech that I'm not familiar with, it won't take
+              long for me to pick it up! <br/> <br/>Being a freelance artist on the side, I am highly critical of my own
+              work, which is why I give it my all when it comes to the appearance and functionality of what I create as
+              well as the translating of requirements to solutions.
+            </Typography>
           </Fade>
           </Slide>
         </Box>
       </Box>
-
       <Box sx={{position:'relative', width: '100%', height: '100px', backgroundColor: theme.palette.aboutColor.background}}>
         <Slide direction="right">
           <Box sx={{position: 'relative', width: {xs: "100%", sm: '80%', md: '60%'}, ml: 'auto', backgroundColor: theme.palette.aboutColor.educationBacking}}>
@@ -109,7 +108,6 @@ export default function AboutMe() {
           </Box>
         </Slide>
       </Box>
-
     </Box>
   )
 }

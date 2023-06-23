@@ -1,15 +1,15 @@
-import React, {useRef, useState, useEffect} from "react";
-import { sectionLayout } from "../styles/index";
-import {Box, Button, Stack, Typography, useTheme} from "@mui/material";
+import {useRef, useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {Box, Stack, useTheme} from "@mui/material";
 import {Slide} from 'react-awesome-reveal';
 import {useDraggable} from 'react-use-draggable-scroll';
-import ProjectCard from './ProjectCard';
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
+import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 import AWExpressPic from "../public/AWExpressPic.jpg";
 import PortfolioPic from "../public/PortfolioPic.jpg";
 import ProgrammingPic from "../public/ProgrammingPic.jpg";
-import {useIsElementVisible} from "../Hooks/useIsElementVisible";
-import {setScrollLocation} from "../redux/features/navigation/scroll-location";
-import {useDispatch} from "react-redux";
+import {sectionLayout} from "../pages/index";
+import ProjectCard from './ProjectCard';
 
 const PROJECTS = [
   {
@@ -24,8 +24,8 @@ const PROJECTS = [
   },
   {
     title: 'Portfolio',
-    subtitle: 'This very portfolio website',
-    picUrl:`url(${PortfolioPic.src})`,
+    subtitle: 'A website about me',
+    picUrl: `url(${PortfolioPic.src})`,
     gitHubUrl: 'https://github.com/ryan-tso/ryan-tso-portfolio',
     description: "This portfolio was planned and designed in Adobe Photoshop, and is built with React, Next.js and Redux " +
       "with Material UI for styling.  Nav bar logic and smooth page navigation was created using Redux along with a custom " +
@@ -37,45 +37,43 @@ const PROJECTS = [
     subtitle: "Striving for growth",
     picUrl: `url(${ProgrammingPic.src})`,
     description: "I hope to work with you to develop great products and effective solutions for you or your customers' " +
-      "needs!  Let us collaborate together and make the world a little bit easier :)"
+      "needs.  Let us collaborate together and make the world a little bit easier!"
   }
 ]
 
 const CARD_WIDTH = '50vh'
 const CARD_GUTTERS = '50px'
 
+const cardContainerStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  alignItems: 'center',
+  overflowX: 'scroll',
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  }
+}
+
 
 export default function Projects() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const { events } = useDraggable(ref);
+  const {events} = useDraggable(ref);
   const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
 
   useEffect(() => {
     if (isElementVisible) dispatch(setScrollLocation('Projects'))
-  },[isElementVisible])
+  }, [isElementVisible])
 
 
   return (
     <Box sx={sectionLayout}>
       <Slide direction="right" triggerOnce>
         <Box sx={{background: 'linear-gradient(175deg, #151626 40%, #252c4e 100%)'}}>
-          <Box
-            ref={ref}
-            {...events}
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              width: '100%',
-              alignItems: 'center',
-              overflowX: 'scroll',
-              '&::-webkit-scrollbar': {
-                display: 'none'
-              },
-            }}
-          >
-            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}} />
+          <Box ref={ref} {...events} sx={cardContainerStyle}>
+            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}}/>
             <Stack direction='row' sx={{pt: '2%', pb: '2%'}}>
               {
                 PROJECTS.map((item, index) => (
@@ -89,12 +87,11 @@ export default function Projects() {
                   />
                 ))
               }
-
             </Stack>
-            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}} />
+            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}}/>
           </Box>
         </Box>
       </Slide>
     </Box>
-);
+  );
 }
