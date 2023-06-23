@@ -80,11 +80,10 @@ export default function Title() {
       {/*<Box sx={titleImageStyle}/>*/}
       <Image
         src={TitleImage}
-        layout="fill"
-        objectFit="cover"
+        fill
         priority={true}
-        quality={100}
         alt="Title Background"
+        style={{objectFit:'cover'}}
       />
       <Box sx={{...sectionInnerLayout, flexDirection: 'column'}}>
         <Stack direction="column" alignItems='flex-end' sx={{position: "relative", width: '250px', top: "11%", left: "10%"}}>

@@ -83,37 +83,35 @@ export default function Navbar() {
     }
   }
 
-  return (
-    <>
-      <Box sx={navbarStyle}>
-        <Divider sx={{backgroundColor: 'darkgrey'}}/>
-        <Stack flexDirection="row" alignItems="center" justifyContent="space-evenly" sx={contentContainerStyle}>
-          {
-            SECTIONS.map((item, index) => (
-              <Stack key={index} flexDirection="column" alignItems="center">
-                <ScrollIntoView selector={'#' + item.toLowerCase().replace(/\s/g, '')}>
-                  <Typography sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : 'black'}}>
-                    {item}
-                  </Typography>
-                  <Zoom in={selection === item} easing={{enter: "ease-in", exit: "linear"}}>
-                    <Box sx={underlineStyle}/>
-                  </Zoom>
-                </ScrollIntoView>
-              </Stack>
-            ))
-          }
-        </Stack>
-        <Divider sx={{backgroundColor: 'darkgrey'}}/>
+  return <>
+    <Box sx={navbarStyle}>
+      <Divider sx={{backgroundColor: 'darkgrey'}}/>
+      <Stack flexDirection="row" alignItems="center" justifyContent="space-evenly" sx={contentContainerStyle}>
+        {
+          SECTIONS.map((item, index) => (
+            <Stack key={index} flexDirection="column" alignItems="center">
+              <ScrollIntoView selector={'#' + item.toLowerCase().replace(/\s/g, '')}>
+                <Typography sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : 'black'}}>
+                  {item}
+                </Typography>
+                <Zoom in={selection === item} easing={{enter: "ease-in", exit: "linear"}}>
+                  <Box sx={underlineStyle}/>
+                </Zoom>
+              </ScrollIntoView>
+            </Stack>
+          ))
+        }
+      </Stack>
+      <Divider sx={{backgroundColor: 'darkgrey'}}/>
+    </Box>
+    <Fade in={SECTIONS.includes(selection)} timeout={500}>
+      <Box sx={nextButtonContainerStyle}>
+          <ScrollIntoView selector={'#' + SECTIONS[nextSection].toLowerCase().replace(/\s/g, '')}>
+            <IconButton sx={nextButtonStyle}>
+              <KeyboardDoubleArrowDownIcon className="icon" fontSize='large' />
+            </IconButton>
+          </ScrollIntoView>
       </Box>
-      <Fade in={SECTIONS.includes(selection)} timeout={500}>
-        <Box sx={nextButtonContainerStyle}>
-            <ScrollIntoView selector={'#' + SECTIONS[nextSection].toLowerCase().replace(/\s/g, '')}>
-              <IconButton sx={nextButtonStyle}>
-                <KeyboardDoubleArrowDownIcon className="icon" fontSize='large' />
-              </IconButton>
-            </ScrollIntoView>
-        </Box>
-      </Fade>
-    </>
-  )
+    </Fade>
+  </>;
 }

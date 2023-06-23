@@ -53,11 +53,11 @@ export default function AboutMe() {
           <Box sx={photoStyle}>
             <Image
               src={RyanPic}
-              layout="fill"
-              objectFit="cover"
+              fill
               priority={true}
               quality={100}
               alt="Title Background"
+              style={{objectFit: 'cover'}}
             />
           </Box>
           <Slide direction="left" triggerOnce>
