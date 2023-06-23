@@ -76,11 +76,12 @@ export default function Title() {
 
 
   return (
-    <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px'}}>
+    <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px', backgroundColor: 'white'}}>
       <Image
         src={TitleImage}
         fill
         priority
+        placeholder="blur"
         alt="Title Background"
         style={{objectFit:'cover'}}
       />
