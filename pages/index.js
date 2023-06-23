@@ -88,7 +88,6 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
-
       <Box id="aboutme" sx={headerContainerStyle}>
         <Typography sx={sectionHeaderStyle}>
           About Me
@@ -148,8 +147,6 @@ export default function Home() {
       <Contact />
 
       <Box sx={endCapStyle}/>
-
-
 
     </Box>
   )

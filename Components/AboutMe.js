@@ -23,8 +23,6 @@ const photoStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   boxShadow: 5,
-  backgroundImage: `url(${RyanPic.src})`,
-  backgroundSize: 'cover',
 }
 
 const photoBackingStyle = {
@@ -52,7 +50,16 @@ export default function AboutMe() {
     <Box ref={ref} sx={{...sectionLayout, backgroundColor: theme.palette.aboutColor.background}}>
       <Box sx={sectionInnerLayout}>
         <Box sx={{position: 'relative', width: '30%', minWidth: '150px'}}>
-          <Box sx={photoStyle} />
+          <Box sx={photoStyle}>
+            <Image
+              src={RyanPic}
+              layout="fill"
+              objectFit="cover"
+              priority={true}
+              quality={100}
+              alt="Title Background"
+            />
+          </Box>
           <Slide direction="left" triggerOnce>
             <Box sx={photoBackingStyle}>
               <Stack direction='column' sx={{position: 'relative', ml: 'auto', mt: 'auto', p: '5px', alignItems: 'flex-end'}}>

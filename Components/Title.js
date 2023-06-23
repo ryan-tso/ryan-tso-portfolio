@@ -7,6 +7,7 @@ import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from "../redux/features/navigation/scroll-location";
 import { sectionInnerLayout } from "../pages/index";
 import TitleImage from "../public/TitleBackground.jpg";
+import Image from "next/image";
 
 export default function Title() {
   const theme = useTheme();
@@ -76,7 +77,15 @@ export default function Title() {
 
   return (
     <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px'}}>
-      <Box sx={titleImageStyle}/>
+      {/*<Box sx={titleImageStyle}/>*/}
+      <Image
+        src={TitleImage}
+        layout="fill"
+        objectFit="cover"
+        priority={true}
+        quality={100}
+        alt="Title Background"
+      />
       <Box sx={{...sectionInnerLayout, flexDirection: 'column'}}>
         <Stack direction="column" alignItems='flex-end' sx={{position: "relative", width: '250px', top: "11%", left: "10%"}}>
           <Stack direction="row" sx={{position: "relative", alignItems: "end"}}>
