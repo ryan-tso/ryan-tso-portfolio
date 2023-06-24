@@ -1,6 +1,5 @@
 import {createTheme} from "@mui/material/styles";
 
-
 export const theme = createTheme({
   palette: {
     title: {
@@ -32,7 +31,7 @@ export const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: `'Roboto', sans-serif`,
     fontWeightLight: 100,
     fontWeightRegular: 300,
     fontWeightMedium: 400,

@@ -1,9 +1,6 @@
 import Head from 'next/head'
-import { useEffect, useRef } from 'react';
-import { useDispatch } from "react-redux";
 import { Box, Typography, useTheme } from "@mui/material";
 import { Slide, Fade } from "react-awesome-reveal";
-import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { Title, AboutMe, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
 
 
@@ -23,30 +20,14 @@ export const sectionInnerLayout = {
   ml: 'auto',
   mr: 'auto',
   width: {xs: "100%", sm: "80%", md: "60%"},
-  minWidth: '375px',
+  minWidth: '360px',
   maxWidth: '1000px',
   height: "100%",
 }
 
 
-
 export default function Home() {
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const skillsRef = useRef(null);
-  const experienceRef = useRef(null);
-  const projectsRef = useRef(null);
-  const contactsRef = useRef(null);
-
-  const isSkillsVisible = useIsElementVisible(skillsRef.current);
-  const isExperienceVisible = useIsElementVisible(experienceRef.current);
-  const isElementVisible = useIsElementVisible(projectsRef.current);
-  const isContactsVisible = useIsElementVisible(contactsRef.current);
-
-
-  // Use non SSR components since react-awesome-reveal not compatible
-  // const AboutMe = dynamic(() => import('../Components/AboutMe'), {ssr: false});
-
 
   const headerContainerStyle = {
     width: '100%',
@@ -58,14 +39,14 @@ export default function Home() {
   const sectionHeaderStyle = {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
-    fontSize: {xs:'2rem', sm:'2.5rem', md: '3rem'},
+    fontSize: {xs:'2.5rem', sm:'2.75rem', md: '3rem'},
     ml: 'auto',
     mr: 'auto',
   }
 
   const spacerStyle = {
     width: '100%',
-    height: '30vh',
+    height: '15vh',
     backgroundColor: 'white'
   }
 

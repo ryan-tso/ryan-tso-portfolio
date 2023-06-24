@@ -16,6 +16,7 @@ const PROJECTS = [
     title: 'AWExpress',
     subtitle: 'A full-stack AWS-based marketplace',
     picUrl: `url(${AWExpressPic.src})`,
+    gitHubUrl: 'https://github.com/ryan-tso/AWExpress',
     description: "AWExpress is a full-stack academic project developed for Amazon as an internal marketplace for employees. " +
       "The frontend is built with React, Next.js, Redux, and Material UI, while the backend RESTful API server was " +
       "constructed using serverless cloud technology such as AWS Lambda and AWS API Gateway.  Users are able to login " +
@@ -27,10 +28,10 @@ const PROJECTS = [
     subtitle: 'A website about me',
     picUrl: `url(${PortfolioPic.src})`,
     gitHubUrl: 'https://github.com/ryan-tso/ryan-tso-portfolio',
-    description: "This portfolio was planned and designed in Adobe Photoshop, and is built with React, Next.js and Redux " +
-      "with Material UI for styling.  Nav bar logic and smooth page navigation was created using Redux along with a custom " +
-      "IntersectionObserver hook. Next.js was used to future-proof this site if ever it needed to be expanded with " +
-      "greater functionality.",
+    description: "This portfolio was planned and designed in Adobe Photoshop with a mobile-first approach, and is built " +
+      "with React, Next.js and Redux with Material UI for styling.  Nav bar logic and smooth page navigation was created " +
+      "using Redux along with a custom IntersectionObserver hook. Next.js was used to future-proof this site if ever it " +
+      "needed to be expanded with greater functionality."
   },
   {
     title: "More to Come!",
@@ -77,14 +78,15 @@ export default function Projects() {
             <Stack direction='row' sx={{pt: '2%', pb: '2%'}}>
               {
                 PROJECTS.map((item, index) => (
-                  <ProjectCard
-                    key={index}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    description={item.description}
-                    picUrl={item.picUrl}
-                    gitHubUrl={item.gitHubUrl ?? null}
-                  />
+                  <Slide key={index} direction="up">
+                    <ProjectCard
+                      title={item.title}
+                      subtitle={item.subtitle}
+                      description={item.description}
+                      picUrl={item.picUrl}
+                      gitHubUrl={item.gitHubUrl ?? null}
+                    />
+                  </Slide>
                 ))
               }
             </Stack>

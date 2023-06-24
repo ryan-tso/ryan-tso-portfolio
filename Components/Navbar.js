@@ -36,7 +36,7 @@ export default function Navbar() {
     ml: 'auto',
     mr: 'auto',
     width: {xs: '100%', sm: '80%', md:'60%'},
-    minWidth: '375px',
+    minWidth: '360px',
     maxWidth: '1000px',
     height: "100%",
   }
@@ -44,7 +44,8 @@ export default function Navbar() {
   const buttonStyle = {
     fontFamily: theme.typography.navBar,
     fontWeight: 300,
-    fontSize: {xs: '15pt', sm: '17pt', md: "20pt"},
+    fontSize: {xs: '14pt', sm: '17pt', md: "20pt"},
+    userSelect: 'none',
     transition: 'all 0.25s ease-in-out',
     '&:hover': {
       color: theme.palette.title.text,
@@ -54,7 +55,7 @@ export default function Navbar() {
 
   const underlineStyle = {
     height: '2px',
-    width: '110%',
+    width: '100%',
     mt: '-4px',
     borderRadius: '3px',
     backgroundColor: theme.palette.title.text

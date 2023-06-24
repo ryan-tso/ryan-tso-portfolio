@@ -48,8 +48,8 @@ export default function AboutMe() {
 
   return (
     <Box ref={ref} sx={{...sectionLayout, backgroundColor: theme.palette.aboutColor.background}}>
-      <Box sx={sectionInnerLayout}>
-        <Box sx={{position: 'relative', width: '30%', minWidth: '150px'}}>
+      <Box sx={{...sectionInnerLayout, flexDirection: {xs: 'column', sm: 'row'}, alignItems: {xs: 'center', sm: 'flex-start'}}}>
+        <Box sx={{position: 'relative', width: {xs: '65%', sm: '30%'}, minWidth: '150px'}}>
           <Box sx={photoStyle}>
             <Image
               src={RyanPic}
@@ -69,7 +69,7 @@ export default function AboutMe() {
                      <DescriptionIcon sx={{color: 'white', fontSize: '60px', '&:hover': {color: '#f1c6d1'}}}/>
                     </IconButton>
                   </Link>
-                  <Typography sx={{fontSize: {xs: '0.6rem', sm: '0.80rem', md: '1rem'}, color: 'white'}}>
+                  <Typography sx={{fontSize: {xs: '0.9rem', sm: '0.80rem', md: '1rem'}, color: 'white'}}>
                     View and print my resume here!
                   </Typography>
                 </Slide>
@@ -77,7 +77,7 @@ export default function AboutMe() {
             </Box>
           </Slide>
         </Box>
-        <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: '70%', p: '20px'}}>
+        <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: {xs: '100%', sm: '70%'}, p: '20px'}}>
           <Slide direction="up" triggerOnce>
           <Fade fraction={0.5} duration={1000} triggerOnce>
             <Typography align='justify' sx={{
@@ -85,12 +85,12 @@ export default function AboutMe() {
               fontWeight: 300,
               color: theme.palette.aboutColor.text,
             }}>
-              I'm a recent graduate who is passionate about creating interactive, easy-to-use, and effective
+              I'm a recent computer science graduate who is passionate about creating interactive, easy-to-use, and responsive
               full-stack web applications. <br/> <br/>I specialize in JavaScript, React, Next.js, and RESTful APIs along
               with a myriad of backend technology; though if there is tech that I'm not familiar with, it won't take
-              long for me to pick it up! <br/> <br/>Being a freelance artist on the side, I am highly critical of my own
-              work, which is why I give it my all when it comes to the appearance and functionality of what I create as
-              well as the translating of requirements to solutions.
+              long for me to pick it up! <br/> <br/>Being a freelance artist on the side, I am well versed in translating
+              requirements to solutions while being highly critical of my own work, which is why I give it my all when it
+              comes to the appearance and functionality of what I create.
             </Typography>
           </Fade>
           </Slide>

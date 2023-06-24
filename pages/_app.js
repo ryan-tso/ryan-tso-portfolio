@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import {theme} from "../styles/theme";
 import {ThemeProvider} from "@mui/material";
 
-
-
 function MyApp({ Component, pageProps }) {
 
   return (

@@ -1,18 +1,4 @@
-import {
-  Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Stack,
-  Typography,
-  MobileStepper,
-  useTheme,
-  Button,
-  IconButton,
-  Slide as MuiSlide,
-  Fade,
-} from "@mui/material";
+import {Box, List, ListItemText, Stack, Typography, MobileStepper, useTheme, IconButton, Slide as MuiSlide, Fade} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {sectionInnerLayout, sectionLayout} from "../pages/index";
@@ -147,13 +133,13 @@ export default function Experience() {
   }
 
   const companyNameStyle = {
-    fontSize: '1.6rem',
+    fontSize: {xs: '1.4rem', sm:'1.6rem'},
     fontWeight: 100,
     color: 'white'
   }
 
   const roleStyle = {
-    fontSize: '2rem',
+    fontSize: {xs: '1.5rem', sm: '2rem'},
     lineHeight: "1.9rem",
     color: 'white'
   }
@@ -215,7 +201,7 @@ export default function Experience() {
         }
         {
           props.direction !== 'right' && !props.disabled &&
-          <KeyboardArrowLeftIcon onClick={handleBack} disabled={page === 0} sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
+          <KeyboardArrowLeftIcon disabled={page === 0} sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
         }
       </IconButton>
     )
@@ -276,9 +262,9 @@ export default function Experience() {
             </Box>
           </Slider>
 
-          <Stack direction="row" spacing="1rem" sx={{position: 'relative', width: '100%'}}>
+          <Stack direction={{xs: "column", sm:"row"}} spacing="1rem" sx={{position: 'relative', width: '100%'}}>
             <Slider in={elementIn} container={containerRef.current}>
-              <Box sx={{position: 'relative', width: '70%', height: '100%'}}>
+              <Box sx={{position: 'relative', width: {xs: '100%', sm:'70%'}, height: '100%'}}>
                 <Slide direction="left" triggerOnce>
                   <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
                     <Typography sx={headingStyle}> Responsibilities and Accomplishments: </Typography>
@@ -302,7 +288,7 @@ export default function Experience() {
               </Box>
             </Slider>
             <Slider direction="up" in={elementIn} container={containerRef.current}>
-              <Box sx={{position: 'relative', width: '30%', height: '100%'}}>
+              <Box sx={{position: 'relative', width: {xs: '100%', sm: '30%'}, height: '100%'}}>
                 <Slide direction="up" triggerOnce>
                   <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
                     <Typography sx={headingStyle}> Skills Developed: </Typography>

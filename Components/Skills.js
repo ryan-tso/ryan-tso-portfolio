@@ -26,13 +26,14 @@ export default function Skills() {
   const headerStyle = {
     fontWeight: 700,
     color: theme.palette.skills.text,
-    fontSize: '1.75rem'
+    fontSize: {xs:'1.5rem', sm:'1.75rem'}
   }
 
   const textStyle = {
     fontSize: '1.4rem',
     fontFamily: theme.typography.navBar,
     fontWeight: 300,
+    userSelect: 'none',
   }
 
   const selectionStyle = {
@@ -131,7 +132,6 @@ export default function Skills() {
     <Box ref={ref} sx={sectionLayout}>
       <Slide direction="right">
         <Box sx={{...sectionLayout, backgroundColor: theme.palette.skills.background}}>
-          <Slide direction="up">
             <Stack sx={{...sectionInnerLayout, flexDirection: 'column', backgroundColor: theme.palette.skills.backgroundAlt}}>
               <Stack
                 direction="row"
@@ -148,7 +148,7 @@ export default function Skills() {
                       alignItems='center'
                       sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}
                     >
-                      <Typography sx={headerStyle}> {item.name} </Typography>
+                      <Typography align="center" sx={headerStyle}> {item.name} </Typography>
                       <>{item.icon}</>
                       {
                         item.skills.map((skill, index) => (
@@ -159,7 +159,13 @@ export default function Skills() {
                             sx={selectionStyle}
                           >
                             <Slide cascade direction="up">
-                              <Typography align="center" sx={{...textStyle, fontSize: `${0.5 + skill.value * 1.5}rem`}}>
+                              <Typography
+                                align="center"
+                                sx={{
+                                  ...textStyle,
+                                  fontSize: {xs: `${0.3 + skill.value * 1.5}rem`, sm: `${0.5 + skill.value * 1.5}rem`}
+                                }}
+                              >
                                 {skill.name}
                               </Typography>
                             </Slide>
@@ -187,7 +193,6 @@ export default function Skills() {
                 </Box>
               </Box>
             </Stack>
-          </Slide>
         </Box>
       </Slide>
     </Box>

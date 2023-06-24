@@ -52,7 +52,7 @@ export default function Title() {
   const descriptionStyle = {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
-    fontSize: {xs: '1.5rem', sm: '1.75rem', md: '2rem'},
+    fontSize: {xs: '1.4rem', sm: '1.75rem', md: '2rem', xl: '2.25rem'},
     color: theme.palette.title.text
   }
 
@@ -97,7 +97,7 @@ export default function Title() {
         </Stack>
         <Stack direction="column" sx={{position: 'relative', ml: 'auto', mr: 'auto', top: '25%', alignItems: 'center'}}>
           <Typography noWrap sx={descriptionStyle}> Welcome to everything about me </Typography>
-          <Box sx={{width: '20%', mt: '20px',}}>
+          <Box sx={{width: {xs:'30%', sm: '20%'}, mt: '20px',}}>
             <ScrollIntoView selector='#aboutme'>
               <Button
                 variant="outlined"
