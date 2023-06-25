@@ -1,7 +1,9 @@
 import {useRef, useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {Box, Stack, useTheme} from "@mui/material";
-import {Slide} from 'react-awesome-reveal';
+import {Box, IconButton, Stack, useTheme} from "@mui/material";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import {Slide, Fade} from 'react-awesome-reveal';
 import {useDraggable} from 'react-use-draggable-scroll';
 import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
@@ -43,7 +45,6 @@ const PROJECTS = [
 ]
 
 const CARD_WIDTH = '50vh'
-const CARD_GUTTERS = '50px'
 
 const cardContainerStyle = {
   display: 'flex',
@@ -51,9 +52,25 @@ const cardContainerStyle = {
   width: '100%',
   alignItems: 'center',
   overflowX: 'scroll',
+  overFlowY: 'hidden',
   '&::-webkit-scrollbar': {
     display: 'none'
   }
+}
+
+const arrowStyle = {
+  position: 'absolute',
+  display: 'flex',
+  top: '50%',
+  transform: 'translate(0, -50%)',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: {xs:'20px', sm: '40px'},
+  height: '60px',
+  zIndex: 1,
+  pointerEvents: 'none',
+  backgroundColor: 'rgba(255,255,255,0.3)',
+  borderRadius: '10px'
 }
 
 
@@ -73,12 +90,18 @@ export default function Projects() {
     <Box sx={sectionLayout}>
       <Slide direction="right" triggerOnce>
         <Box sx={{background: 'linear-gradient(175deg, #151626 40%, #252c4e 100%)'}}>
+          <Box sx={{...arrowStyle, left: '2%'}}>
+            <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
+          </Box>
+          <Box sx={{...arrowStyle, right: '2%'}}>
+            <KeyboardArrowRightIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
+          </Box>
           <Box ref={ref} {...events} sx={cardContainerStyle}>
-            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}}/>
-            <Stack direction='row' sx={{pt: '2%', pb: '2%'}}>
+            <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
+            <Stack direction='row' spacing={8} sx={{pt: '2%', pb: '2%'}}>
               {
                 PROJECTS.map((item, index) => (
-                  <Slide key={index} direction="up">
+                  <Fade key={index}>
                     <ProjectCard
                       title={item.title}
                       subtitle={item.subtitle}
@@ -86,11 +109,11 @@ export default function Projects() {
                       picUrl={item.picUrl}
                       gitHubUrl={item.gitHubUrl ?? null}
                     />
-                  </Slide>
+                  </Fade>
                 ))
               }
             </Stack>
-            <Box sx={{minWidth: `calc(50% - ${CARD_WIDTH}/2 - ${CARD_GUTTERS})`}}/>
+            <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
           </Box>
         </Box>
       </Slide>

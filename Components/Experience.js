@@ -10,6 +10,7 @@ import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {useDispatch, useSelector} from "react-redux";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 import ScrollIntoView from "react-scroll-into-view";
+import 'animate.css';
 
 
 const EXPERIENCE = [
@@ -90,9 +91,13 @@ export default function Experience() {
   const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: theme.rootMargins.scrollInViewSection});
 
   useEffect(() => {
-    if (isElementVisible) dispatch(setScrollLocation('Experience'))
+    if (isElementVisible) {
+      dispatch(setScrollLocation('Experience'))
+      if (!seen) setSeen(true);
+    }
   }, [isElementVisible])
 
+  const [seen, setSeen] = useState(false);
   const [page, setPage] = useState(0);
   const [elementIn, setElementIn] = useState(true);
 
@@ -175,12 +180,17 @@ export default function Experience() {
     position: 'fixed',
     zIndex: 2,
     bottom: 0,
-    display: 'flex',
+    display: seen ? 'flex' : 'none',
     height: '50px',
     width: '100%',
     boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)',
     backgroundColor: 'white',
     transition: 'all 1s ease'
+  }
+
+  const navArrowIconProps = {
+    className: "animate__animated animate__headShake animate__slow animate__infinite infinite",
+    sx: {fontSize: {sm: '4rem', md: '7rem'}}
   }
 
   const NavArrow = (props) => {
@@ -197,11 +207,11 @@ export default function Experience() {
       }}>
         {
           props.direction === 'right' && !props.disabled &&
-          <KeyboardArrowRightIcon sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
+          <KeyboardArrowRightIcon {...navArrowIconProps} />
         }
         {
           props.direction !== 'right' && !props.disabled &&
-          <KeyboardArrowLeftIcon disabled={page === 0} sx={{fontSize: {sm: '4rem', md: '7rem'}}}/>
+          <KeyboardArrowLeftIcon disabled={page === 0} {...navArrowIconProps} />
         }
       </IconButton>
     )
@@ -313,8 +323,7 @@ export default function Experience() {
           </Stack>
         </Stack>
       </Box>
-      <Fade in={isElementVisible && selection === "Experience"} timeout={500}>
-        <Box sx={stepperContainerStyle}>
+        <Box className={isElementVisible ? "animate__animated animate__fadeInLeft" : "animate__animated animate__fadeOutLeft"} sx={stepperContainerStyle}>
           <MobileStepper
             position='static'
             variant="dots"
@@ -337,7 +346,6 @@ export default function Experience() {
             }
           />
         </Box>
-      </Fade>
     </>
   )
 }

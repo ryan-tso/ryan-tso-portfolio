@@ -40,6 +40,7 @@ export default function Home() {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
     fontSize: {xs:'2.5rem', sm:'2.75rem', md: '3rem'},
+    color: 'black',
     ml: 'auto',
     mr: 'auto',
   }
@@ -112,12 +113,12 @@ export default function Home() {
 
       <Box sx={spacerStyle} />
 
-      <Box id="contact" sx={{...headerContainerStyle, color: 'white'}}>
+      <Box id="contact" sx={{...headerContainerStyle}}>
         <Box sx={{width: '100%', backgroundColor: theme.palette.contact.background, overflow: 'hidden'}}>
           <Slide direction="right" triggerOnce>
             <Fade triggerOnce>
               <Box sx={{...sectionInnerLayout, }}>
-                <Typography sx={{...sectionHeaderStyle, ml: {xs: '10%', sm: 0}}}>
+                <Typography sx={{...sectionHeaderStyle, ml: {xs: '10%', sm: 0}, color: 'white'}}>
                   Contact
                 </Typography>
               </Box>

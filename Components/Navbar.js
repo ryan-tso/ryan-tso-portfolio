@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { Box, Divider, IconButton, Stack, Typography, useTheme, Zoom, Fade } from "@mui/material";
+import {Box, Divider, IconButton, Stack, Typography, useTheme, Zoom, Fade, Tooltip} from "@mui/material";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import ScrollIntoView from 'react-scroll-into-view';
 
@@ -29,7 +29,7 @@ export default function Navbar() {
     height: "60px",
     pt: '8px',
     pb: '1px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   }
 
   const contentContainerStyle = {
@@ -95,9 +95,9 @@ export default function Navbar() {
                 <Typography sx={{...buttonStyle, color: selection === item ? theme.palette.title.text : 'black'}}>
                   {item}
                 </Typography>
-                <Zoom in={selection === item} easing={{enter: "ease-in", exit: "linear"}}>
+                <Fade in={selection === item} timeout={250} easing={{enter: "ease-in", exit: "linear"}}>
                   <Box sx={underlineStyle}/>
-                </Zoom>
+                </Fade>
               </ScrollIntoView>
             </Stack>
           ))
@@ -108,9 +108,11 @@ export default function Navbar() {
     <Fade in={SECTIONS.includes(selection)} timeout={500}>
       <Box sx={nextButtonContainerStyle}>
           <ScrollIntoView selector={'#' + SECTIONS[nextSection].toLowerCase().replace(/\s/g, '')}>
-            <IconButton sx={nextButtonStyle}>
-              <KeyboardDoubleArrowDownIcon className="icon" fontSize='large' />
-            </IconButton>
+            <Tooltip followCursor placement="top-start" title={selection === SECTIONS[SECTIONS.length - 1] ? "Go back to top" : `Go to ${SECTIONS[nextSection]}`}>
+              <IconButton sx={nextButtonStyle}>
+                <KeyboardDoubleArrowDownIcon className="icon" fontSize='large' />
+              </IconButton>
+            </Tooltip>
           </ScrollIntoView>
       </Box>
     </Fade>

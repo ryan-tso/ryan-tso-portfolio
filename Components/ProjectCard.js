@@ -28,8 +28,6 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     minWidth: '300px',
     maxWidth: '400px',
     borderRadius: '7px',
-    ml: CARD_GUTTERS,
-    mr: CARD_GUTTERS,
     backgroundColor: 'white',
     overflow: 'hidden',
     '&:hover': {
@@ -77,14 +75,20 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
 
   const subtitleTextStyle = {
     fontSize: '1.5rem',
+    color: 'black',
     zIndex: 1,
     textShadow: '0px 0px 5px rgba(255,255,255,1)'
+  }
+
+  const descriptionContainerStyle = {
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    p: '12px',
   }
 
   const descriptionTextStyle = {
     fontWeight: '400',
     fontSize: {xs: '0.9rem', md: '1rem', xl: '1.1rem'},
-    textShadow: '0px 0px 7px rgba(255,255,255,1)'
+    color: 'black',
   }
 
   const buttonStyle = {
@@ -155,10 +159,12 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
           container={containerRef.current}
           timeout={SLIDE_DURATION}
           easing={{enter: EASING, exit: EASING}}
-          sx={{width: '100%', height: '100%', p: '20px'}}
+          sx={{width: '100%', height: '100%'}}
         >
           <Box>
-            <Typography align='justify' sx={descriptionTextStyle}> {description} </Typography>
+            <Box sx={descriptionContainerStyle}>
+              <Typography align='justify' sx={descriptionTextStyle}> {description} </Typography>
+            </Box>
             <Button
               variant="outlined"
               startIcon={<ArrowLeftIcon/>}
@@ -169,7 +175,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
             {
               gitHubUrl &&
               <Box sx={{position: 'absolute', width: '40%', right: '5%', bottom: '5%'}}>
-                <Typography sx={{fontSize: {xs: '0.8rem', md: '0.8rem', xl: '1rem'}}}> Check out the code!</Typography>
+                <Typography sx={{fontSize: {xs: '0.8rem', md: '0.8rem', xl: '1rem'}, color: 'black'}}> Check out the code!</Typography>
                 <Link href={gitHubUrl} rel="noopener noreferrer" target="_blank">
                   <IconButton variant="outlined" sx={{...buttonStyle, width: '100%', mt: '5%'}}>
                     <GitHubIcon/>
