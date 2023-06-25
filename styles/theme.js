@@ -24,6 +24,9 @@ export const theme = createTheme({
     experience: {
       background: [ '#354b66', '#3f6c5a'],
     },
+    projects: {
+      background: '#151626',
+    },
     contact: {
       background: '#575660'
     },

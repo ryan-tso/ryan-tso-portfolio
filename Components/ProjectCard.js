@@ -82,7 +82,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
 
   const descriptionContainerStyle = {
     backgroundColor: 'rgba(255,255,255,0.4)',
-    p: '12px',
+    p: '15px',
   }
 
   const descriptionTextStyle = {

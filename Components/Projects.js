@@ -90,7 +90,7 @@ export default function Projects() {
   return (
     <Box sx={sectionLayout}>
       <Slide direction="right" triggerOnce>
-        <Box sx={{background: 'linear-gradient(175deg, #151626 40%, #252c4e 100%)'}}>
+        <Box sx={{backgroundColor: theme.palette.projects.background}}>
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
