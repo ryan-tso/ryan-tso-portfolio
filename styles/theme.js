@@ -7,9 +7,10 @@ export const theme = createTheme({
     },
     aboutColor: {
       text: '#be4b5e',
-      background: '#f5f5f5',
+      background: '#fafafa',
       backing: '#df4069',
-      educationBacking: '#a0a1ae'
+      educationBacking1: '#6d8aaf',
+      educationBacking2: '#668a6a'
     },
     skills: {
       header: '#9aa7b0',

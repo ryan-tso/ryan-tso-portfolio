@@ -181,7 +181,9 @@ export default function Experience() {
     zIndex: 2,
     bottom: 0,
     display: seen ? 'flex' : 'none',
-    height: '50px',
+    height: '5vw',
+    minHeight: '50px',
+    maxHeight: '60px',
     width: '100%',
     boxShadow: '0px -10px 25px 0px rgba(0,0,0,0.25)',
     backgroundColor: 'white',
@@ -196,10 +198,10 @@ export default function Experience() {
   const NavArrow = (props) => {
     return (
       <IconButton onClick={props.onClick} disabled={props.disabled} sx={{
-        position: 'absolute',
+        position: 'relative',
         display: {xs: 'none', sm: 'flex'},
-        ...(props.direction === 'right' ? {right: '0px'} : {left: '0px'}),
-        width: {sm: '50px', md: '75px'},
+        ...(props.direction === 'right' ? {ml: '20px'} : {mr: '20px'}),
+        width: {sm: '50px', md: '70px'},
         height: '100%',
         borderRadius: '0px',
         zIndex: 1,
@@ -236,12 +238,11 @@ export default function Experience() {
   return (
     <>
       <Box sx={backgroundStyle} />
-      <Box ref={containerRef} sx={{...sectionLayout, backgroundColor: "transparent"}}>
-        <ScrollIntoView selector='#experience'>
-          <NavArrow direction="left" onClick={handleBack} disabled={page === 0}/>
-          <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length - 1}/>
-        </ScrollIntoView>
-        <Stack spacing="1rem" sx={{...sectionInnerLayout, flexDirection: "column", pt: '30px', pb: '30px'}}>
+      <Box ref={containerRef} sx={{...sectionLayout, justifyContent: 'center', flexDirection: 'row', background: '', backgroundColor: "transparent"}}>
+          <ScrollIntoView selector='#experience'>
+            <NavArrow direction="left" onClick={handleBack} disabled={page === 0}/>
+          </ScrollIntoView>
+        <Stack spacing="1rem" sx={{...sectionInnerLayout, ml: 0, mr: 0, flexDirection: "column", pt: '30px', pb: '30px'}}>
           <Slider direction="right" in={elementIn} container={containerRef.current}>
             <Box sx={{width: '100%', height: '125px'}}>
               <Slide damping={0.1} direction="left" triggerOnce>
@@ -322,8 +323,11 @@ export default function Experience() {
             </Slider>
           </Stack>
         </Stack>
+        <ScrollIntoView selector='#experience'>
+          <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length - 1}/>
+        </ScrollIntoView>
       </Box>
-        <Box className={isElementVisible ? "animate__animated animate__fadeInLeft" : "animate__animated animate__fadeOutLeft"} sx={stepperContainerStyle}>
+        <Box className={isElementVisible ? "animate__animated animate__bounceInUp" : "animate__animated animate__fadeOutDown"} sx={stepperContainerStyle}>
           <MobileStepper
             position='static'
             variant="dots"

@@ -131,7 +131,7 @@ export default function Skills() {
   return (
     <Box ref={ref} sx={sectionLayout}>
       <Slide direction="right">
-        <Box sx={{...sectionLayout, backgroundColor: theme.palette.skills.background}}>
+        <Box sx={{...sectionLayout, background: '', backgroundColor: theme.palette.skills.background}}>
             <Stack sx={{...sectionInnerLayout, flexDirection: 'column', backgroundColor: theme.palette.skills.backgroundAlt}}>
               <Stack
                 direction="row"

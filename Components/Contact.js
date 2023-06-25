@@ -81,7 +81,7 @@ export default function Contact() {
   },[isElementVisible])
 
   return (
-    <Box ref={ref} sx={{...sectionLayout, backgroundColor: theme.palette.contact.background}}>
+    <Box ref={ref} sx={{...sectionLayout, background: '', backgroundColor: theme.palette.contact.background}}>
       <Box sx={{...sectionInnerLayout, color: 'white', mt: '30px', mb: '20vh', pl: {xs: '10%', sm: 0}}}>
         <Grid
           container

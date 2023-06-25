@@ -10,7 +10,7 @@ export const sectionLayout = {
   flexDirection: 'column',
   width: '100%',
   overflow:'hidden',
-  backgroundColor: 'white'
+  background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)'
 }
 
 export const sectionInnerLayout = {
@@ -32,7 +32,7 @@ export default function Home() {
   const headerContainerStyle = {
     width: '100%',
     display: 'flex',
-    backgroundColor: 'white',
+    background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)',
     pt: '60px',
   }
 
@@ -40,7 +40,7 @@ export default function Home() {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
     fontSize: {xs:'2.5rem', sm:'2.75rem', md: '3rem'},
-    color: 'black',
+    color: '#595959',
     ml: 'auto',
     mr: 'auto',
   }
@@ -48,7 +48,7 @@ export default function Home() {
   const spacerStyle = {
     width: '100%',
     height: '15vh',
-    backgroundColor: 'white'
+    background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)'
   }
 
   const endCapStyle = {

@@ -27,9 +27,8 @@ export default function Navbar() {
     zIndex: 99,
     top: '0px',
     height: "60px",
-    pt: '8px',
-    pb: '1px',
     backgroundColor: 'white',
+    boxShadow: '0px 1px 5px 0px rgba(0,0,0,0.1)'
   }
 
   const contentContainerStyle = {
@@ -86,7 +85,6 @@ export default function Navbar() {
 
   return <>
     <Box sx={navbarStyle}>
-      <Divider sx={{backgroundColor: 'darkgrey'}}/>
       <Stack flexDirection="row" alignItems="center" justifyContent="space-evenly" sx={contentContainerStyle}>
         {
           SECTIONS.map((item, index) => (
@@ -103,7 +101,6 @@ export default function Navbar() {
           ))
         }
       </Stack>
-      <Divider sx={{backgroundColor: 'darkgrey'}}/>
     </Box>
     <Fade in={SECTIONS.includes(selection)} timeout={500}>
       <Box sx={nextButtonContainerStyle}>

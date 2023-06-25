@@ -69,8 +69,9 @@ const arrowStyle = {
   height: '60px',
   zIndex: 1,
   pointerEvents: 'none',
-  backgroundColor: 'rgba(255,255,255,0.3)',
-  borderRadius: '10px'
+  color: 'rgba(255,255,255,0.7)',
+  backgroundColor: 'rgba(0,0,0,0.3)',
+  borderRadius: '3px'
 }
 
 
