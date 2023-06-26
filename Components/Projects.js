@@ -33,7 +33,7 @@ const PROJECTS = [
     description: "This portfolio was planned and designed in Adobe Photoshop with a mobile-first approach, and is built " +
       "with React, Next.js and Redux with Material UI for styling.  Nav bar logic and smooth page navigation was created " +
       "using Redux along with a custom IntersectionObserver hook. Next.js was used to future-proof this site if ever it " +
-      "needed to be expanded with greater functionality."
+      "needed to be expanded with greater functionality.  This project is under continuous deployment using AWS Amplify."
   },
   {
     title: "More to Come!",
