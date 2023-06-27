@@ -114,7 +114,7 @@ export default function AboutMe() {
             }}>
               I'm a recent computer science graduate who is passionate about creating interactive, easy-to-use, and responsive
               full-stack web applications. <br/> <br/>I specialize in JavaScript, React, Next.js, and RESTful APIs along
-              with a myriad of backend technology; though if there is tech that I'm not familiar with, it won't take
+              with a myriad of backend technology; and if there is tech that I'm not familiar with, it won't take
               long for me to pick it up! <br/> <br/>Being a freelance artist on the side, I am well versed in translating
               requirements to solutions while being highly critical of my own work, which is why I give it my all when it
               comes to the appearance and functionality of what I create.

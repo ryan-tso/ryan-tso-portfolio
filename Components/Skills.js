@@ -24,9 +24,10 @@ export default function Skills() {
   const [expertise, setExpertise] = useState(0);
 
   const headerStyle = {
+    fontFamily: 'Quicksand',
     fontWeight: 700,
     color: theme.palette.skills.text,
-    fontSize: {xs:'1.5rem', sm:'1.75rem'}
+    fontSize: {xs:'1.5rem', sm:'1.75rem', md: '2rem'}
   }
 
   const textStyle = {
@@ -50,8 +51,21 @@ export default function Skills() {
     }
   }
 
+  const iconContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    mt: '10px',
+    mb: '10px',
+    width: {xs: '80px', sm: '100px'},
+    height: {xs: '96px', sm: '120px'},
+    backgroundColor: theme.palette.skills.meterHeader,
+    clipPath: 'polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)'
+  }
+
   const iconStyle = {
-    color: theme.palette.skills.text, fontSize: '70px', mt: '15px', mb: '30px'
+    color: theme.palette.skills.backgroundAlt,
+    fontSize: {xs: '50px', sm: '70px'}
   }
 
   const meterContainerStyle = {
@@ -149,7 +163,10 @@ export default function Skills() {
                       sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}
                     >
                       <Typography align="center" sx={headerStyle}> {item.name} </Typography>
-                      <>{item.icon}</>
+
+                      <Box sx={iconContainerStyle}>
+                        {item.icon}
+                      </Box>
                       {
                         item.skills.map((skill, index) => (
                           <Box

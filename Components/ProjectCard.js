@@ -27,7 +27,6 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     width: CARD_WIDTH,
     minWidth: '300px',
     maxWidth: '400px',
-    borderRadius: '7px',
     backgroundColor: 'white',
     overflow: 'hidden',
     '&:hover': {

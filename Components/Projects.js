@@ -58,6 +58,13 @@ const cardContainerStyle = {
   }
 }
 
+const backgroundStyle = {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  pointerEvents: 'none',
+}
+
 const arrowStyle = {
   position: 'absolute',
   display: 'flex',
@@ -91,6 +98,18 @@ export default function Projects() {
     <Box sx={sectionLayout}>
       <Slide direction="right" triggerOnce>
         <Box sx={{backgroundColor: theme.palette.projects.background}}>
+          <Box className="animate__animated animate__pulse animate__infinite infinite" sx={{
+            ...backgroundStyle,
+            '--animate-duration': '5s',
+            clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',
+            backgroundColor: theme.palette.projects.background2}}
+          />
+          <Box className="animate__animated animate__pulse animate__infinite infinite animate__delay-2s" sx={{
+            ...backgroundStyle,
+            '--animate-duration': '5s',
+            clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',
+            backgroundColor: theme.palette.projects.background3}}
+          />
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
@@ -99,7 +118,7 @@ export default function Projects() {
           </Box>
           <Box ref={ref} {...events} sx={cardContainerStyle}>
             <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-            <Stack direction='row' spacing={8} sx={{pt: '2%', pb: '2%'}}>
+            <Stack direction='row' spacing={10}>
               {
                 PROJECTS.map((item, index) => (
                   <Fade key={index}>

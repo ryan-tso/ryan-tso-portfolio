@@ -145,6 +145,7 @@ export default function Experience() {
 
   const roleStyle = {
     fontSize: {xs: '1.5rem', sm: '2rem'},
+    fontWeight: 400,
     lineHeight: "1.9rem",
     color: 'white'
   }
@@ -159,7 +160,7 @@ export default function Experience() {
 
   const headingStyle = {
     fontSize: '1.3rem',
-    fontWeight: 300,
+    fontWeight: 400,
     color: 'white',
     mt: '-0.5rem',
   }
@@ -198,25 +199,29 @@ export default function Experience() {
   const NavArrow = (props) => {
     return (
       <ScrollIntoView selector='#experience'>
-        <IconButton onClick={props.onClick} disabled={props.disabled} sx={{
-          position: 'relative',
-          display: {xs: 'none', sm: 'flex'},
-          ...(props.direction === 'right' ? {ml: '20px'} : {mr: '20px'}),
-          width: {sm: '50px', md: '70px'},
-          height: '100%',
-          borderRadius: '0px',
-          zIndex: 1,
-          backgroundColor: 'rgba(255,255,255,0.3)'
-        }}>
-          {
-            props.direction === 'right' && !props.disabled &&
-            <KeyboardArrowRightIcon {...navArrowIconProps} />
-          }
-          {
-            props.direction !== 'right' && !props.disabled &&
-            <KeyboardArrowLeftIcon disabled={page === 0} {...navArrowIconProps} />
-          }
-        </IconButton>
+          <IconButton
+            className={isElementVisible && elementIn ? "animate__animated animate__bounceInDown" : "animate__animated animate__fadeOutUp"}
+            onClick={props.onClick}
+            disabled={props.disabled}
+            sx={{
+              position: 'relative',
+              display: {xs: 'none', sm: 'flex'},
+              ...(props.direction === 'right' ? {ml: '20px'} : {mr: '20px'}),
+              width: {sm: '50px', md: '70px'},
+              height: '100%',
+              borderRadius: '0px',
+              zIndex: 1,
+              backgroundColor: 'rgba(255,255,255,0.3)'
+          }}>
+            {
+              props.direction === 'right' && !props.disabled &&
+              <KeyboardArrowRightIcon {...navArrowIconProps} />
+            }
+            {
+              props.direction !== 'right' && !props.disabled &&
+              <KeyboardArrowLeftIcon disabled={page === 0} {...navArrowIconProps} />
+            }
+          </IconButton>
       </ScrollIntoView>
     )
   }
