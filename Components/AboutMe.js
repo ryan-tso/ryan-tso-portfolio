@@ -12,30 +12,6 @@ import { sectionInnerLayout, sectionLayout } from "../pages/index";
 import RyanPic from "../public/RyanPic.jpg";
 
 
-const photoStyle = {
-  position: 'relative',
-  top: '20px',
-  display: 'flex',
-  zIndex: 3,
-  height: 0,
-  width: '95%',
-  paddingBottom: '95%',
-  justifyContent: 'center',
-  alignItems: 'center',
-  boxShadow: 5,
-}
-
-const photoBackingStyle = {
-  position: 'relative',
-  display: 'flex',
-  zIndex: 2,
-  mt: "-75px",
-  height: '200px',
-  width: '100vw',
-  float: 'right',
-  background: `linear-gradient(32deg, #df4069 60%, #f07a47 100%)`
-}
-
 const EducationStrip = ({title, year, school, color, offset}) => (
     <Box sx={{
       position: 'relative',
@@ -60,7 +36,7 @@ const EducationStrip = ({title, year, school, color, offset}) => (
 )
 
 
-export default function AboutMe() {
+export default function AboutMe({ data }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -70,7 +46,35 @@ export default function AboutMe() {
     if (isElementVisible) dispatch(setScrollLocation('About Me'))
   },[isElementVisible])
 
+  const photoStyle = {
+    position: 'relative',
+    top: '20px',
+    display: 'flex',
+    zIndex: 3,
+    height: 0,
+    width: '95%',
+    paddingBottom: '95%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: 5,
+  }
 
+  const photoBackingStyle = {
+    position: 'relative',
+    display: 'flex',
+    zIndex: 2,
+    mt: "-75px",
+    height: '200px',
+    width: '100vw',
+    float: 'right',
+    background: `linear-gradient(32deg, #df4069 60%, #f07a47 100%)`
+  }
+
+  const descriptionStyle = {
+    fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
+    fontWeight: 300,
+    color: theme.palette.aboutColor.text,
+  }
 
 
   return (
@@ -105,22 +109,15 @@ export default function AboutMe() {
           </Slide>
         </Box>
         <Box sx={{position: 'relative', display: 'flex', flexDirection: "column", width: {xs: '100%', sm: '70%'}, p: '20px'}}>
-          <Slide direction="up" triggerOnce>
-          <Fade fraction={0.5} duration={1000} triggerOnce>
-            <Typography align='justify' sx={{
-              fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
-              fontWeight: 300,
-              color: theme.palette.aboutColor.text,
-            }}>
-              I'm a recent computer science graduate who is passionate about creating interactive, easy-to-use, and responsive
-              full-stack web applications. <br/> <br/>I specialize in JavaScript, React, Next.js, and RESTful APIs along
-              with a myriad of backend technology; and if there is tech that I'm not familiar with, it won't take
-              long for me to pick it up! <br/> <br/>Being a freelance artist on the side, I am well versed in translating
-              requirements to solutions while being highly critical of my own work, which is why I give it my all when it
-              comes to the appearance and functionality of what I create.
-            </Typography>
+          <Fade duration={1000} triggerOnce>
+            {
+              data.map((paragraph, index) => (
+                <Typography key={index} align='justify' paragraph sx={descriptionStyle}>
+                  {paragraph}
+                </Typography>
+              ))
+            }
           </Fade>
-          </Slide>
         </Box>
       </Box>
       <Box sx={{position:'relative', width: '100%', backgroundColor: theme.palette.aboutColor.background}}>

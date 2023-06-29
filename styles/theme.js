@@ -22,7 +22,7 @@ export const theme = createTheme({
       text: '#293c4c'
     },
     experience: {
-      background: [ '#354b66', '#3f6c5a'],
+      background: [ '#2f4a6d', '#2f7358'],
     },
     projects: {
       background: '#272630',

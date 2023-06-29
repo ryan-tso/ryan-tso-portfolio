@@ -11,7 +11,7 @@ import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 
 
-export default function Skills() {
+export default function Skills({ data }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -24,7 +24,7 @@ export default function Skills() {
   const [expertise, setExpertise] = useState(0);
 
   const headerStyle = {
-    fontFamily: 'Quicksand',
+    fontFamily: 'Roboto',
     fontWeight: 700,
     color: theme.palette.skills.text,
     fontSize: {xs:'1.5rem', sm:'1.75rem', md: '2rem'}
@@ -98,49 +98,11 @@ export default function Skills() {
     transition: 'all 0.5s cubic-bezier(.55, .15, .45, .85)'
   }
 
-  const SKILLS = [
-    {
-      name: "Front End",
-      icon: <ScreenshotMonitorIcon sx={iconStyle}/>,
-      skills: [
-        {name: "HTML", value: 0.9},
-        {name: "CSS", value: 0.8},
-        {name: "JavaScript", value: 0.95},
-        {name: "TypeScript", value: 0.7},
-        {name: "React.js", value: 0.95},
-        {name: "Next.js", value: 0.75},
-        {name: "Redux", value: 0.9},
-        {name: "Material UI", value: 0.8}
-      ]
-    },
-    {
-      name: "Back End",
-      icon: <AccountTreeIcon sx={iconStyle}/>,
-      skills: [
-        {name: "Java", value: 0.7},
-        {name: "Python", value: 0.6},
-        {name: "C / C++", value: 0.4},
-        {name: "Django", value: 0.65},
-        {name: "Node.js", value: 0.7},
-        {name: "RESTful APIs", value: 0.95},
-        {name: "MySQL", value: 0.6},
-        {name: "NoSQL", value: 0.4},
-        {name: "Serverless", value: 0.6},
-        {name: "Cloud", value: 0.7},
-      ]
-    },
-    {
-      name: "Dev Ops",
-      icon: <GroupsIcon sx={iconStyle}/>,
-      skills: [
-        {name: "GitHub", value: 0.7},
-        {name: "Agile", value: 0.8},
-        {name: "Jira", value: 0.9},
-        {name: "Confluence", value: 0.9}
-      ]
-    }
+  const SKILLS_ICONS = [
+    <ScreenshotMonitorIcon sx={iconStyle}/>,
+    <AccountTreeIcon sx={iconStyle}/>,
+    <GroupsIcon sx={iconStyle}/>,
   ]
-
 
   return (
     <Box ref={ref} sx={sectionLayout}>
@@ -154,18 +116,18 @@ export default function Skills() {
                 sx={{pb: '20px', pt: '20px'}}
               >
                 {
-                  SKILLS.map((item, index) => (
+                  data.map((item, index) => (
                     <Stack
                       key={index}
                       direction="column"
                       justifyContent="flex-start"
                       alignItems='center'
-                      sx={{width: `${100 / SKILLS.length}%`, overflow: 'hidden'}}
+                      sx={{width: `${100 / data.length}%`, overflow: 'hidden'}}
                     >
                       <Typography align="center" sx={headerStyle}> {item.name} </Typography>
 
                       <Box sx={iconContainerStyle}>
-                        {item.icon}
+                        {SKILLS_ICONS[index]}
                       </Box>
                       {
                         item.skills.map((skill, index) => (

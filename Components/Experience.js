@@ -13,63 +13,6 @@ import ScrollIntoView from "react-scroll-into-view";
 import 'animate.css';
 
 
-const EXPERIENCE = [
-  {
-    company: "Ensemble Scientific",
-    picture: `url(${EnsemblePic.src})`,
-    role: "Full-Stack-Developer",
-    period: "2021 - 2022",
-    description: "Ensemble Scientific is a company that produces IoT sensors and devices used primarily in the " +
-      "measurement of agricultural environments, enabling farms to become 'smart' and allowing farmers to effectively " +
-      "monitor and manage their farms to reduce waste and to optimize yield.",
-    responsibilities: [
-      "Implemented the back-end RESTful API server using Python, Django Rest Framework, and MySQL which provided extensive " +
-      "models to company IOT devices and end-points to manage users, devices, data, telemetry, and organization information " +
-      "from the front-end cloud app or from the IOT devices themselves",
-      "Developed the front-end using JavaScript, React, Next.js, and Redux which allowed users to create or join organizations, " +
-      "as well claim, manage, or view the data from the IOT devices for their organization in real time",
-      "Created and maintained comprehensive test suites for back-end API using Pytest and Postman API",
-      "Helped to develop QMS modules for in-house IoT device production that adheres to the requirements of ISO 9001",
-      "Constructed an intuitive roadmap for the company to become ISO 9001 certified",
-    ],
-    skills: [
-      "Python",
-      "Django Rest Framework",
-      "JavaScript",
-      "React",
-      "Redux",
-      "Next.js",
-      "Material UI",
-      "MySQL",
-    ]
-  },
-  {
-    company: "Organika Health Products Inc.",
-    picture: `url(${OrganikaPic.src})`,
-    role: "Quality Control Supervisor",
-    period: "2005 - 2013",
-    description: "Organika is a natural health supplements company specializing in manufacturing and distribution, " +
-      "providing the latest effective products that meet their customers' daily needs.",
-    responsibilities: [
-      "Supervised the Quality team and laboratory and guided them on proper quality procedures and operations",
-      "Improved intra-department and inter-department effectiveness by designing and implementing SOPs integrating newer technologies",
-      "Responsible for transitioning the office to paperless which improved department efficiency by 50%",
-      "Participated in ISO 9001 and HACCP audits as the main point-man and acquired HACCP certification for the company",
-      "Practiced rigorous acceptance testing on a product-to-product basis that reduced non-compliance to 2%"
-    ],
-    skills: [
-      "Quality Control",
-      "Quality Assurance",
-      "Acceptance Testing",
-      "Auditing",
-      "GMP",
-      "ISO 9001",
-      "HACCP",
-      "Manufacturing",
-    ]
-  }
-]
-
 const Slider = props => {
   return (
     <MuiSlide
@@ -83,10 +26,9 @@ const Slider = props => {
   )
 }
 
-export default function Experience() {
+export default function Experience({ data }) {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const selection = useSelector((state) => state.scrollLocation.value)
   const containerRef = useRef(null);
   const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: theme.rootMargins.scrollInViewSection});
 
@@ -108,7 +50,7 @@ export default function Experience() {
     top: 0,
     left: 0,
     zIndex: -1,
-    backgroundImage: EXPERIENCE[page].picture,
+    backgroundImage: data[page].picture,
     backgroundSize: 'cover',
     height: '100vh',
     width: '100vw',
@@ -134,6 +76,7 @@ export default function Experience() {
     alignItems: 'center',
     width: '100%',
     p: '20px',
+    borderRadius: '3px',
     backgroundColor: theme.palette.experience.background[page]
   }
 
@@ -200,7 +143,7 @@ export default function Experience() {
     return (
       <ScrollIntoView selector='#experience'>
           <IconButton
-            className={isElementVisible && elementIn ? "animate__animated animate__bounceInDown" : "animate__animated animate__fadeOutUp"}
+            className={isElementVisible && elementIn ? "animate__animated animate__fadeIn animate__faster" : "animate__animated animate__fadeOut animate__faster"}
             onClick={props.onClick}
             disabled={props.disabled}
             sx={{
@@ -256,14 +199,15 @@ export default function Experience() {
                   height: '125px',
                   width: '100vw',
                   right: 0,
-                  backgroundColor: theme.palette.experience.background[page]
+                  backgroundColor: theme.palette.experience.background[page],
+                  borderRadius: '3px'
                 }}/>
               </Slide>
               <Box sx={titleContainerStyle}>
                 <Slide cascade damping={0.1} direction="left" triggerOnce>
-                  <Typography sx={companyNameStyle}> {EXPERIENCE[page].company} </Typography>
-                  <Typography sx={roleStyle}> {EXPERIENCE[page].role} </Typography>
-                  <Typography sx={companyNameStyle}> {EXPERIENCE[page].period} </Typography>
+                  <Typography sx={companyNameStyle}> {data[page].company} </Typography>
+                  <Typography sx={roleStyle}> {data[page].role} </Typography>
+                  <Typography sx={companyNameStyle}> {data[page].period} </Typography>
                 </Slide>
               </Box>
             </Box>
@@ -272,7 +216,7 @@ export default function Experience() {
             <Box>
               <Slide direction='right' triggerOnce>
                 <Box sx={descriptionContainerStyle}>
-                  <Typography align="justify" sx={descriptionStyle}> {EXPERIENCE[page].description}</Typography>
+                  <Typography align="justify" sx={descriptionStyle}> {data[page].description}</Typography>
                 </Box>
               </Slide>
             </Box>
@@ -281,12 +225,12 @@ export default function Experience() {
             <Slider in={elementIn} container={containerRef.current}>
               <Box sx={{position: 'relative', width: {xs: '100%', sm:'70%'}, height: '100%'}}>
                 <Slide direction="left" triggerOnce>
-                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
+                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page], borderRadius: '3px'}}>
                     <Typography sx={headingStyle}> Responsibilities and Accomplishments: </Typography>
                     <Box sx={{pl: '18px'}}>
                       <List style={{listStyleType: 'disc'}}>
                         {
-                          EXPERIENCE[page].responsibilities.map((item, index) => (
+                          data[page].responsibilities.map((item, index) => (
                             <ListItemText
                               key={index}
                               primaryTypographyProps={listResponsibilityStyle}
@@ -305,12 +249,12 @@ export default function Experience() {
             <Slider direction="up" in={elementIn} container={containerRef.current}>
               <Box sx={{position: 'relative', width: {xs: '100%', sm: '30%'}, height: '100%'}}>
                 <Slide direction="up" triggerOnce>
-                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page]}}>
+                  <Box sx={{p: '20px', backgroundColor: theme.palette.experience.background[page], borderRadius: '3px'}}>
                     <Typography sx={headingStyle}> Skills Developed: </Typography>
                     <Box sx={{pl: '18px'}}>
                       <List style={{listStyleType: 'disc'}}>
                         {
-                          EXPERIENCE[page].skills.map((item, index) => (
+                          data[page].skills.map((item, index) => (
                             <ListItemText
                               key={index}
                               primaryTypographyProps={listSkillStyle}
@@ -327,18 +271,18 @@ export default function Experience() {
             </Slider>
           </Stack>
         </Stack>
-        <NavArrow direction="right" onClick={handleNext} disabled={page === EXPERIENCE.length - 1}/>
+        <NavArrow direction="right" onClick={handleNext} disabled={page === data.length - 1}/>
       </Box>
         <Box className={isElementVisible ? "animate__animated animate__bounceInUp" : "animate__animated animate__fadeOutDown"} sx={stepperContainerStyle}>
           <MobileStepper
             position='static'
             variant="dots"
-            steps={EXPERIENCE.length}
+            steps={data.length}
             activeStep={page}
             sx={{m: 'auto'}}
             nextButton={
               <ScrollIntoView selector='#experience'>
-                <IconButton size="small" onClick={handleNext} disabled={page === EXPERIENCE.length - 1}>
+                <IconButton size="small" onClick={handleNext} disabled={page === data.length - 1}>
                   <KeyboardArrowRightIcon/>
                 </IconButton>
               </ScrollIntoView>

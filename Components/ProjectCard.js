@@ -4,10 +4,10 @@ import {Box, Button, Typography, useTheme, Fade, Slide, IconButton} from "@mui/m
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import GitHubIcon from '@mui/icons-material/GitHub';
+import {ScrollSyncNode} from 'scroll-sync-react';
 
 
-const CARD_WIDTH = '23vw'
-const CARD_GUTTERS = {xs: '15px', sm: '30px', md: '40px', lg: '50px'}
+const CARD_WIDTH = '30vw'
 const EASING = 'cubic-bezier(.5, .1, .5, .9)'
 const SLIDE_DURATION = 500
 
@@ -21,12 +21,12 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
   const cardStyle = {
     display: 'flex',
     position: 'relative',
-    height: `calc(${CARD_WIDTH} * 1.4)`,
-    minHeight: '420px',
-    maxHeight: '560px',
+    height: CARD_WIDTH,
+    minHeight: '350px',
+    maxHeight: '600px',
     width: CARD_WIDTH,
-    minWidth: '300px',
-    maxWidth: '400px',
+    minWidth: '350px',
+    maxWidth: '600px',
     backgroundColor: 'white',
     overflow: 'hidden',
     '&:hover': {
@@ -35,7 +35,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
   }
 
   const cardPictureStyle = {
-    width: '100%',
+    width: '150%',
     height: '100%',
     transform: hovering || isFlipped ? 'scale(1.1,1.1)' : '',
     backgroundImage: picUrl,
@@ -56,27 +56,38 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     transition: 'all 0.4s ease'
   }
 
+  const titleContainerStyle = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.9)',
+    pl: '8%',
+    mt: '15%',
+    mb: '10%'
+  }
+
   const titleTextStyle = {
-    fontFamily: 'Roboto Condensed',
-    fontWeight: 700,
+    fontFamily: 'Roboto',
+    fontWeight: 200,
     fontSize: '3rem',
     color: 'white',
-    textShadow: '0px 0px 5px rgba(255,255,255,0.3)',
+    textShadow: '0px 0px 3px rgba(255,255,255,0.3)',
     zIndex: 1,
   }
 
   const hoverContentStyle = {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'left',
     width: '100%',
+    pl: '8%',
   }
 
   const subtitleTextStyle = {
-    fontSize: '1.5rem',
+    fontSize: '1.7rem',
     color: 'black',
     zIndex: 1,
-    textShadow: '0px 0px 5px rgba(255,255,255,1)'
+    textShadow: '0px 0px 2px rgba(255,255,255,1)'
   }
 
   const descriptionContainerStyle = {
@@ -85,8 +96,9 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
   }
 
   const descriptionTextStyle = {
-    fontWeight: '400',
-    fontSize: {xs: '0.9rem', md: '1rem', xl: '1.1rem'},
+    fontFamily: 'Quicksand',
+    fontWeight: 500,
+    fontSize: {xs: '0.9rem', md: '0.95rem', lg: '1rem',  xl: '1.2rem'},
     color: 'black',
   }
 
@@ -126,9 +138,11 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
 
   return (
     <Box ref={containerRef} sx={cardStyle} onMouseEnter={handleHover} onMouseLeave={handleHoverOff}>
-      <Box sx={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
-        <Box className="background" sx={cardPictureStyle}/>
-      </Box>
+      <ScrollSyncNode group="a" scroll="synced-only">
+        <Box sx={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
+          <Box sx={cardPictureStyle}/>
+        </Box>
+      </ScrollSyncNode>
       <Box sx={contentContainerStyle}>
         <Slide
           in={!isFlipped}
@@ -139,12 +153,12 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
           sx={{position: 'absolute', width: '100%', height: '100%'}}
         >
           <Box>
-            <Box sx={{width: '100%', backgroundColor: 'black', mt: '15%', mb: '10%'}}>
+            <Box sx={titleContainerStyle}>
               <Typography align="center" sx={titleTextStyle}> {title} </Typography>
             </Box>
             <Fade in={hovering} timeout={400}>
               <Box sx={hoverContentStyle}>
-                <Typography align="center" sx={subtitleTextStyle}> {subtitle} </Typography>
+                <Typography align="left" sx={subtitleTextStyle}> {subtitle} </Typography>
                 <Button variant="outlined" endIcon={<ArrowRightIcon/>} onClick={handleFlip} sx={buttonStyle}>
                   Details
                 </Button>

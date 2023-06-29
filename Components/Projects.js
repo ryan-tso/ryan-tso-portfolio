@@ -12,39 +12,11 @@ import PortfolioPic from "../public/PortfolioPic.jpg";
 import ProgrammingPic from "../public/ProgrammingPic.jpg";
 import {sectionLayout} from "../pages/index";
 import ProjectCard from './ProjectCard';
+import DragScroll from './utilities/DragScroll';
+import { ScrollSync, ScrollSyncNode } from 'scroll-sync-react';
 
-const PROJECTS = [
-  {
-    title: 'AWExpress',
-    subtitle: 'A full-stack AWS-based marketplace',
-    picUrl: `url(${AWExpressPic.src})`,
-    gitHubUrl: 'https://github.com/ryan-tso/AWExpress',
-    description: "AWExpress is a full-stack academic project developed for Amazon as an internal marketplace for employees. " +
-      "The frontend is built with React, Next.js, Redux, and Material UI, while the backend RESTful API server was " +
-      "constructed using serverless cloud technology such as AWS Lambda and AWS API Gateway.  Users are able to login " +
-      "using Google authentication with a Lambda Authorizer to browse, add to cart, and purchase products, as well as " +
-      "list their own items for sale."
-  },
-  {
-    title: 'Portfolio',
-    subtitle: 'A website about me',
-    picUrl: `url(${PortfolioPic.src})`,
-    gitHubUrl: 'https://github.com/ryan-tso/ryan-tso-portfolio',
-    description: "This portfolio was planned and designed in Adobe Photoshop with a mobile-first approach, and is built " +
-      "with React, Next.js and Redux with Material UI for styling.  Nav bar logic and smooth page navigation was created " +
-      "using Redux along with a custom IntersectionObserver hook. Next.js was used to future-proof this site if ever it " +
-      "needed to be expanded with greater functionality.  This project is under continuous deployment using AWS Amplify."
-  },
-  {
-    title: "More to Come!",
-    subtitle: "Striving for growth",
-    picUrl: `url(${ProgrammingPic.src})`,
-    description: "I hope to work with you to develop great products and effective solutions for you or your customers' " +
-      "needs.  Let us collaborate together and make the world a little bit easier!"
-  }
-]
 
-const CARD_WIDTH = '50vh'
+const CARD_WIDTH = '30vw'
 
 const cardContainerStyle = {
   display: 'flex',
@@ -82,7 +54,7 @@ const arrowStyle = {
 }
 
 
-export default function Projects() {
+export default function Projects({ data }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -116,25 +88,28 @@ export default function Projects() {
           <Box sx={{...arrowStyle, right: '2%'}}>
             <KeyboardArrowRightIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
-          <Box ref={ref} {...events} sx={cardContainerStyle}>
-            <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-            <Stack direction='row' spacing={10}>
-              {
-                PROJECTS.map((item, index) => (
-                  <Fade key={index}>
-                    <ProjectCard
-                      title={item.title}
-                      subtitle={item.subtitle}
-                      description={item.description}
-                      picUrl={item.picUrl}
-                      gitHubUrl={item.gitHubUrl ?? null}
-                    />
-                  </Fade>
-                ))
-              }
-            </Stack>
-            <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-          </Box>
+          <ScrollSync>
+            <ScrollSyncNode group="a">
+            <Box ref={ref} {...events} sx={cardContainerStyle}>
+              <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
+              <Stack direction='row' spacing={10}>
+                {
+                  data.map((item, index) => (
+                      <ProjectCard
+                        key={index}
+                        title={item.title}
+                        subtitle={item.subtitle}
+                        description={item.description}
+                        picUrl={item.picUrl}
+                        gitHubUrl={item.gitHubUrl ?? null}
+                      />
+                  ))
+                }
+              </Stack>
+              <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
+            </Box>
+            </ScrollSyncNode>
+          </ScrollSync>
         </Box>
       </Slide>
     </Box>

@@ -2,6 +2,18 @@ import Head from 'next/head'
 import { Box, Typography, useTheme } from "@mui/material";
 import { Slide, Fade } from "react-awesome-reveal";
 import { Title, AboutMe, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
+import { ABOUT_ME, SKILLS, EXPERIENCE, PROJECTS } from "../data";
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      aboutMeData: ABOUT_ME,
+      skillsData: SKILLS,
+      experienceData: EXPERIENCE,
+      projectsData: PROJECTS
+    }
+  }
+}
 
 
 export const sectionLayout = {
@@ -26,7 +38,7 @@ export const sectionInnerLayout = {
 }
 
 
-export default function Home() {
+export default function Home(props) {
   const theme = useTheme();
 
   const headerContainerStyle = {
@@ -39,15 +51,15 @@ export default function Home() {
   const sectionHeaderStyle = {
     fontFamily: theme.typography.sectionHeader,
     fontWeight: 300,
-    fontSize: {xs:'2.5rem', sm:'2.75rem', md: '3rem'},
-    color: '#595959',
+    fontSize: {xs:'2.5rem', sm:'3rem', md: '3.5rem'},
+    color: '#3d3d3d',
     ml: 'auto',
     mr: 'auto',
   }
 
   const spacerStyle = {
     width: '100%',
-    height: '15vh',
+    height: '25vh',
     background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)'
   }
 
@@ -71,11 +83,13 @@ export default function Home() {
       <Box sx={spacerStyle} />
 
       <Box id="aboutme" sx={headerContainerStyle}>
-        <Typography sx={sectionHeaderStyle}>
-          About Me
-        </Typography>
+        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
+          <Typography sx={sectionHeaderStyle}>
+            About Me
+          </Typography>
+        </Fade>
       </Box>
-      <AboutMe />
+      <AboutMe data={props.aboutMeData}/>
 
       <Box sx={spacerStyle} />
 
@@ -91,25 +105,29 @@ export default function Home() {
           </Slide>
         </Box>
       </Box>
-      <Skills />
+      <Skills data={props.skillsData}/>
 
       <Box sx={spacerStyle} />
 
       <Box id="experience" sx={headerContainerStyle}>
-        <Typography sx={sectionHeaderStyle}>
-          Experience
-        </Typography>
+        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
+          <Typography sx={sectionHeaderStyle}>
+            Experience
+          </Typography>
+        </Fade>
       </Box>
-      <Experience />
+      <Experience data={props.experienceData}/>
 
       <Box sx={spacerStyle} />
 
       <Box id="projects" sx={headerContainerStyle}>
-        <Typography sx={sectionHeaderStyle}>
-          Projects
-        </Typography>
+        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
+          <Typography sx={sectionHeaderStyle}>
+            Projects
+          </Typography>
+        </Fade>
       </Box>
-      <Projects />
+      <Projects data={props.projectsData}/>
 
       <Box sx={spacerStyle} />
 
