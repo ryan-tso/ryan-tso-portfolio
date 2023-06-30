@@ -35,7 +35,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
   }
 
   const cardPictureStyle = {
-    width: '150%',
+    width: '125%',
     height: '100%',
     transform: hovering || isFlipped ? 'scale(1.1,1.1)' : '',
     backgroundImage: picUrl,
@@ -63,7 +63,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     backgroundColor: 'rgba(0,0,0,0.9)',
     pl: '8%',
     mt: '15%',
-    mb: '10%'
+    mb: '5%'
   }
 
   const titleTextStyle = {
@@ -78,9 +78,9 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
   const hoverContentStyle = {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'left',
+    alignItems: 'center',
     width: '100%',
-    pl: '8%',
+    p: '5%',
   }
 
   const subtitleTextStyle = {
@@ -158,7 +158,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
             </Box>
             <Fade in={hovering} timeout={400}>
               <Box sx={hoverContentStyle}>
-                <Typography align="left" sx={subtitleTextStyle}> {subtitle} </Typography>
+                <Typography align="center" sx={subtitleTextStyle}> {subtitle} </Typography>
                 <Button variant="outlined" endIcon={<ArrowRightIcon/>} onClick={handleFlip} sx={buttonStyle}>
                   Details
                 </Button>

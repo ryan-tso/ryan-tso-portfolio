@@ -1,5 +1,5 @@
 import {useRef, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Box, IconButton, Stack, useTheme} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -60,6 +60,7 @@ export default function Projects({ data }) {
   const ref = useRef(null);
   const {events} = useDraggable(ref);
   const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+  const selection = useSelector((state) => state.scrollLocation.value)
 
   useEffect(() => {
     if (isElementVisible) dispatch(setScrollLocation('Projects'))
@@ -70,17 +71,23 @@ export default function Projects({ data }) {
     <Box sx={sectionLayout}>
       <Slide direction="right" triggerOnce>
         <Box sx={{backgroundColor: theme.palette.projects.background}}>
-          <Box className="animate__animated animate__pulse animate__infinite infinite" sx={{
-            ...backgroundStyle,
-            '--animate-duration': '5s',
-            clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',
-            backgroundColor: theme.palette.projects.background2}}
+          <Box
+            className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite" : ""}
+            sx={{
+              ...backgroundStyle,
+              '--animate-duration': '5s',
+              clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',
+              backgroundColor: theme.palette.projects.background2
+            }}
           />
-          <Box className="animate__animated animate__pulse animate__infinite infinite animate__delay-2s" sx={{
-            ...backgroundStyle,
-            '--animate-duration': '5s',
-            clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',
-            backgroundColor: theme.palette.projects.background3}}
+          <Box
+            className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite animate__delay-2s" : ""}
+            sx={{
+              ...backgroundStyle,
+              '--animate-duration': '5s',
+              clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',
+              backgroundColor: theme.palette.projects.background3
+            }}
           />
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>

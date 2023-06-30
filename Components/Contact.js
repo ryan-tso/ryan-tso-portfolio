@@ -20,15 +20,15 @@ const INFO = [
     icon: <LocationOnIcon fontSize="inherit"/>
   },
   {
+    title: 'Phone',
+    description: "778-558-3889",
+    icon: <LocalPhoneIcon />
+  },
+  {
     title: 'Email',
     description: "ryan_tso@hotmail.com",
     url: 'mailto:ryan_tso@hotmail.com',
     icon: <MailOutlineIcon fontSize="inherit" />
-  },
-  {
-    title: 'Phone',
-    description: "778-558-3889",
-    icon: <LocalPhoneIcon />
   },
   {
     title: 'LinkedIn',
@@ -66,6 +66,12 @@ const iconStyle = {
   fontSize:'2rem',
 }
 
+const linkStyle = {
+  textDecoration: 'underline',
+  textDecorationThickness: '1px',
+  textUnderlineOffset: '3px',
+}
+
 const ConditionalLink = ({link, condition, children}) => (
   condition ? <Link href={link} rel="noopener noreferrer" target="_blank">{children}</Link> : children
 )
@@ -100,7 +106,7 @@ export default function Contact() {
                     <ConditionalLink link={item.url} condition={item.url}>
                       <Box sx={buttonStyle}>
                         <Icon sx={iconStyle}> {item.icon} </Icon>
-                        <Typography sx={textStyle}> {item.description} </Typography>
+                        <Typography sx={{...textStyle, ...(item.url && linkStyle) }}> {item.description} </Typography>
                       </Box>
                     </ConditionalLink>
                   </Fade>

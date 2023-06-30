@@ -123,7 +123,7 @@ export default function AboutMe({ data }) {
       <Box sx={{position:'relative', width: '100%', backgroundColor: theme.palette.aboutColor.background}}>
         <Slide direction="right" cascade damping={0.25}>
           <EducationStrip title="Bachelor of Computer Science" year="2019 - 2023" school="University of British Columbia" color={theme.palette.aboutColor.educationBacking1} />
-          <EducationStrip title="Bachelor of Food and Nutritional Science" year="2005 - 2013" school="University of British Columbia" color={theme.palette.aboutColor.educationBacking2} offset={5}/>
+          <EducationStrip title="Bachelor of Food and Nutritional Science" year="2005 - 2012" school="University of British Columbia" color={theme.palette.aboutColor.educationBacking2} offset={5}/>
         </Slide>
       </Box>
     </Box>

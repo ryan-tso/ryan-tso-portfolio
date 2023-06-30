@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Box, Button, Stack, Typography, useTheme} from "@mui/material";
 import ScrollIntoView from 'react-scroll-into-view';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -14,6 +14,7 @@ export default function Title() {
   const dispatch = useDispatch();
   const ref = useRef(null);
   const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+  const selection = useSelector((state) => state.scrollLocation.value)
 
   useEffect(() => {
     if (isElementVisible) dispatch(setScrollLocation('Title'))
@@ -76,8 +77,9 @@ export default function Title() {
 
 
   return (
-    <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px', backgroundColor: 'white'}}>
+    <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px', backgroundColor: 'white', overflow: 'hidden'}}>
       <Image
+        className={selection === "Title" ? "breathing" : ""}
         src={TitleImage}
         fill
         priority

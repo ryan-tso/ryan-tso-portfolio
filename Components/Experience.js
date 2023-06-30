@@ -31,6 +31,7 @@ export default function Experience({ data }) {
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: theme.rootMargins.scrollInViewSection});
+  const selection = useSelector((state) => state.scrollLocation.value)
 
   useEffect(() => {
     if (isElementVisible) {
@@ -187,7 +188,7 @@ export default function Experience({ data }) {
 
   return (
     <>
-      <Box sx={backgroundStyle} />
+      <Box className={selection === "Experience" ? "breathing" : ""} sx={backgroundStyle} />
       <Box ref={containerRef} sx={{...sectionLayout, justifyContent: 'center', flexDirection: 'row', background: '', backgroundColor: "transparent"}}>
         <NavArrow direction="left" onClick={handleBack} disabled={page === 0}/>
         <Stack spacing="1rem" sx={{...sectionInnerLayout, ml: 0, mr: 0, flexDirection: "column", pt: '30px', pb: '30px'}}>

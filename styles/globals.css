@@ -24,3 +24,48 @@ a {
     background: black;
   }
 }
+
+.panning {
+  animation-name: floating;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes panning {
+  0% {transform: translate(0, 0px);}
+  50% {transform: translate(-50px, 0px);}
+  100% {transform: translate(0, 0px);}
+}
+
+.breathing {
+  animation-name: breathing;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes breathing {
+  0% {transform: scale(1,1)}
+  50% {transform: scale(1.05,1.05)}
+  100% {transform: scale(1,1)}
+}
+
+.spinning {
+  animation-name: spinning;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spinning {
+  0% {transform: rotate(0deg)}
+  25% {transform: rotate(90deg)}
+  50% {transform: rotate(180deg)}
+  75% {transform: rotate(270deg)}
+  100% {transform: rotate(360deg)}
+}
+
+.gear-icon {
+  transform: translate(50%, 50%);
+}
