@@ -131,7 +131,7 @@ export default function Home(props) {
       </Box>
       <Experience data={props.experienceData}/>
 
-      <Spacer color='rgba(136,167,176,0.2)'/>
+      <Spacer color='rgba(154,167,176,0.2)'/>
 
       <Box id="projects" sx={headerContainerStyle}>
         <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>

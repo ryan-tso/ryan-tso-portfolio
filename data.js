@@ -118,6 +118,7 @@ export const PROJECTS = [
     subtitle: 'A full-stack AWS-based marketplace',
     picUrl: `url(${AWExpressPic.src})`,
     gitHubUrl: 'https://github.com/ryan-tso/AWExpress',
+    demoUrl: 'https://main.d3kth9ne2jpxsc.amplifyapp.com',
     description: "AWExpress is a full-stack academic project developed for Amazon as an internal marketplace for employees. " +
       "The frontend is built with React, Next.js, Redux, and Material UI, while the backend RESTful API server was " +
       "constructed using serverless cloud technology such as AWS Lambda and AWS API Gateway.  Users are able to login " +

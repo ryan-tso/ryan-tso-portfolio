@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {useRef, useState} from "react";
-import {Box, Button, Typography, useTheme, Fade, Slide, IconButton} from "@mui/material";
+import {Box, Button, Typography, useTheme, Fade, Slide, IconButton, Tooltip, Stack} from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -12,7 +12,7 @@ const EASING = 'cubic-bezier(.5, .1, .5, .9)'
 const SLIDE_DURATION = 500
 
 
-export default function ProjectCard({title, subtitle, description, picUrl, gitHubUrl}) {
+export default function ProjectCard({title, subtitle, description, picUrl, gitHubUrl, demoUrl}) {
   const theme = useTheme();
   const containerRef = useRef(null);
   const [hovering, setHovering] = useState(false);
@@ -119,6 +119,15 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     }
   }
 
+  const navContainerStyle = {
+    position: 'absolute',
+    width: '50%',
+    right: '5%',
+    bottom: '5%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
+  }
+
   const handleHover = () => {
     setHovering(true);
   }
@@ -187,17 +196,32 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
               sx={{...buttonStyle, position: 'absolute', left: '5%', bottom: '5%',}}>
               Back
             </Button>
-            {
-              gitHubUrl &&
-              <Box sx={{position: 'absolute', width: '40%', right: '5%', bottom: '5%'}}>
-                <Typography sx={{fontSize: {xs: '0.8rem', md: '0.8rem', xl: '1rem'}, color: 'black'}}> Check out the code!</Typography>
-                <Link href={gitHubUrl} rel="noopener noreferrer" target="_blank">
-                  <IconButton variant="outlined" sx={{...buttonStyle, width: '100%', mt: '5%'}}>
-                    <GitHubIcon/>
-                  </IconButton>
-                </Link>
-              </Box>
-            }
+              <Stack direction="row" spacing={1} sx={navContainerStyle}>
+                {
+                  demoUrl &&
+                  <Tooltip followCursor placement="top-start" title="Try out the demo!">
+                    <Box sx={{width: '50%'}}>
+                      <Link href={demoUrl} rel="noopener noreferrer" target="_blank">
+                        <Button variant="outlined" sx={{...buttonStyle, width: '100%'}}>
+                          DEMO
+                        </Button>
+                      </Link>
+                    </Box>
+                  </Tooltip>
+                }
+                {
+                  gitHubUrl &&
+                  <Tooltip followCursor placement="top-start" title="Check out the code!">
+                    <Box sx={{width: '50%'}}>
+                      <Link href={gitHubUrl} rel="noopener noreferrer" target="_blank">
+                        <IconButton variant="outlined" sx={{...buttonStyle, width: '100%', p: '6px'}}>
+                          <GitHubIcon />
+                        </IconButton>
+                      </Link>
+                    </Box>
+                  </Tooltip>
+                }
+              </Stack>
           </Box>
         </Slide>
       </Box>

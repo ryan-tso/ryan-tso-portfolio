@@ -105,6 +105,7 @@ export default function Projects({ data }) {
                         description={item.description}
                         picUrl={item.picUrl}
                         gitHubUrl={item.gitHubUrl ?? null}
+                        demoUrl={item.demoUrl ?? null}
                       />
                   ))
                 }
