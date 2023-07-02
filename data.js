@@ -8,11 +8,11 @@ import ProgrammingPic from "./public/ProgrammingPic.jpg";
 export const ABOUT_ME = [
   "I'm a recent computer science graduate who is passionate about creating interactive, easy-to-use, and responsive " +
   "full-stack web applications.",
-  "I specialize in JavaScript, React, Next.js, and RESTful APIs along with a myriad of backend technology; and if " +
+  "I specialize in JavaScript, React, Next.js, and RESTful APIs along with a myriad of backend technology; but, if " +
   "there is tech that I'm not familiar with, it won't take long for me to pick it up!",
-  "Being a freelance artist on the side, I am well versed in translating requirements to solutions while being highly " +
-  "critical of my own work, which is why I give it my all when it comes to the appearance and functionality of what I " +
-  "create.",
+  // "Being a freelance artist on the side, I am well versed in translating requirements to solutions while being highly " +
+  // "critical of my own work, which is why I give it my all when it comes to the appearance and functionality of what I " +
+  // "create.",
 ]
 
 export const SKILLS = [

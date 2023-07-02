@@ -60,7 +60,14 @@ export default function Home(props) {
   const spacerStyle = {
     width: '100%',
     height: '25vh',
+    pt: '2vh',
     background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)'
+  }
+  const triangleStyle = {
+    width: '100%',
+    height: '100%',
+    clipPath: 'polygon(10% 0, 50% 50%, 90% 0)',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
   }
 
   const endCapStyle = {
@@ -68,6 +75,12 @@ export default function Home(props) {
     height: '50vh',
     backgroundColor: theme.palette.endCap.background
   }
+
+  const Spacer = ({color}) => (
+    <Box sx={spacerStyle}>
+      <Box sx={{...triangleStyle, ...(color && {backgroundColor: color})}} />
+    </Box>
+  )
 
   return (
     <Box sx={{width: '100vw', height: '100vh', overflow: 'auto'}}>
@@ -80,7 +93,7 @@ export default function Home(props) {
       <Title />
       <Navbar />
 
-      <Box sx={spacerStyle} />
+      <Spacer />
 
       <Box id="aboutme" sx={headerContainerStyle}>
         <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
@@ -91,7 +104,7 @@ export default function Home(props) {
       </Box>
       <AboutMe data={props.aboutMeData}/>
 
-      <Box sx={spacerStyle} />
+      <Spacer color='rgba(154,167,176,0.2)'/>
 
       <Box id="skills" />
       <Box sx={headerContainerStyle}>
@@ -107,7 +120,7 @@ export default function Home(props) {
       </Box>
       <Skills data={props.skillsData}/>
 
-      <Box sx={spacerStyle} />
+      <Spacer />
 
       <Box id="experience" sx={headerContainerStyle}>
         <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
@@ -118,7 +131,7 @@ export default function Home(props) {
       </Box>
       <Experience data={props.experienceData}/>
 
-      <Box sx={spacerStyle} />
+      <Spacer color='rgba(136,167,176,0.2)'/>
 
       <Box id="projects" sx={headerContainerStyle}>
         <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
@@ -129,7 +142,7 @@ export default function Home(props) {
       </Box>
       <Projects data={props.projectsData}/>
 
-      <Box sx={spacerStyle} />
+      <Spacer />
 
       <Box id="contact" sx={{...headerContainerStyle}}>
         <Box sx={{width: '100%', backgroundColor: theme.palette.contact.background, overflow: 'hidden'}}>

@@ -17,6 +17,7 @@ const EducationStrip = ({title, year, school, color, offset}) => (
       position: 'relative',
       width: {xs: "100%", sm: `${80 - (offset ?? 0)}%`, md: `${60 - (offset ?? 0)}%`, lg: `${50 - (offset ?? 0)}%`},
       ml: 'auto',
+      mt: '20px',
       mb: '20px',
       backgroundColor: color
     }}>
@@ -71,8 +72,9 @@ export default function AboutMe({ data }) {
   }
 
   const descriptionStyle = {
-    fontSize: {md: '1.1rem', lg: '1.2rem', xl: '1.3rem'},
-    fontWeight: 300,
+    fontFamily: 'Quicksand',
+    fontSize: {xs: '1.2rem', md: '1.3rem', lg: '1.4rem', xl: '1.5rem'},
+    fontWeight: 400,
     color: theme.palette.aboutColor.text,
   }
 
@@ -80,7 +82,7 @@ export default function AboutMe({ data }) {
   return (
     <Box ref={ref} sx={{...sectionLayout, background: '', backgroundColor: theme.palette.aboutColor.background}}>
       <Box sx={{...sectionInnerLayout, flexDirection: {xs: 'column', sm: 'row'}, alignItems: {xs: 'center', sm: 'flex-start'}}}>
-        <Box sx={{position: 'relative', width: {xs: '65%', sm: '30%'}, minWidth: '150px'}}>
+        <Box sx={{position: 'relative', width: {xs: '65%', sm: '30%'}, minWidth: '200px'}}>
           <Box sx={photoStyle}>
             <Image
               src={RyanPic}

@@ -7,12 +7,8 @@ import {Slide, Fade} from 'react-awesome-reveal';
 import {useDraggable} from 'react-use-draggable-scroll';
 import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
-import AWExpressPic from "../public/AWExpressPic.jpg";
-import PortfolioPic from "../public/PortfolioPic.jpg";
-import ProgrammingPic from "../public/ProgrammingPic.jpg";
 import {sectionLayout} from "../pages/index";
 import ProjectCard from './ProjectCard';
-import DragScroll from './utilities/DragScroll';
 import { ScrollSync, ScrollSyncNode } from 'scroll-sync-react';
 
 
@@ -68,27 +64,27 @@ export default function Projects({ data }) {
 
 
   return (
-    <Box sx={sectionLayout}>
+    <Box sx={{...sectionLayout, background: 'linear-gradient(90deg, #cfcfcf 0%, #ebebeb 30%, #ebebeb 70%, #cfcfcf 100%)'}}>
       <Slide direction="right" triggerOnce>
-        <Box sx={{backgroundColor: theme.palette.projects.background}}>
-          <Box
-            className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite" : ""}
-            sx={{
-              ...backgroundStyle,
-              '--animate-duration': '5s',
-              clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',
-              backgroundColor: theme.palette.projects.background2
-            }}
-          />
-          <Box
-            className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite animate__delay-2s" : ""}
-            sx={{
-              ...backgroundStyle,
-              '--animate-duration': '5s',
-              clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',
-              backgroundColor: theme.palette.projects.background3
-            }}
-          />
+        <Box sx={{}}>
+          {/*<Box*/}
+          {/*  className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite" : ""}*/}
+          {/*  sx={{*/}
+          {/*    ...backgroundStyle,*/}
+          {/*    '--animate-duration': '5s',*/}
+          {/*    clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',*/}
+          {/*    backgroundColor: theme.palette.projects.background2*/}
+          {/*  }}*/}
+          {/*/>*/}
+          {/*<Box*/}
+          {/*  className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite animate__delay-2s" : ""}*/}
+          {/*  sx={{*/}
+          {/*    ...backgroundStyle,*/}
+          {/*    '--animate-duration': '5s',*/}
+          {/*    clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',*/}
+          {/*    backgroundColor: theme.palette.projects.background3*/}
+          {/*  }}*/}
+          {/*/>*/}
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
@@ -99,7 +95,7 @@ export default function Projects({ data }) {
             <ScrollSyncNode group="a">
             <Box ref={ref} {...events} sx={cardContainerStyle}>
               <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-              <Stack direction='row' spacing={10}>
+              <Stack direction='row' spacing={10} sx={{pt: '10px', pb: '10px', mt: '20px', mb: '20px'}}>
                 {
                   data.map((item, index) => (
                       <ProjectCard

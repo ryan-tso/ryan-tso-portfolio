@@ -25,7 +25,8 @@ export const theme = createTheme({
       background: [ '#2f4a6d', '#2f7358'],
     },
     projects: {
-      background: '#272630',
+      // background: '#272630',
+      background: '#e3e3e3',
       background2: '#47a5b1',
       background3: '#b14779',
     },

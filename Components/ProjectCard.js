@@ -28,6 +28,7 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     minWidth: '350px',
     maxWidth: '600px',
     backgroundColor: 'white',
+    boxShadow: '0px 0px 10px 3px rgba(0,0,0,0.4)',
     overflow: 'hidden',
     '&:hover': {
       cursor: 'default',
@@ -80,17 +81,16 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    p: '5%',
   }
 
   const subtitleTextStyle = {
     fontSize: '1.7rem',
     color: 'black',
     zIndex: 1,
-    textShadow: '0px 0px 2px rgba(255,255,255,1)'
   }
 
   const descriptionContainerStyle = {
+    width: '100%',
     backgroundColor: 'rgba(255,255,255,0.4)',
     p: '15px',
   }
@@ -158,7 +158,9 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
             </Box>
             <Fade in={hovering} timeout={400}>
               <Box sx={hoverContentStyle}>
-                <Typography align="center" sx={subtitleTextStyle}> {subtitle} </Typography>
+                <Box sx={descriptionContainerStyle}>
+                  <Typography align="center" sx={subtitleTextStyle}> {subtitle} </Typography>
+                </Box>
                 <Button variant="outlined" endIcon={<ArrowRightIcon/>} onClick={handleFlip} sx={buttonStyle}>
                   Details
                 </Button>
