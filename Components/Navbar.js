@@ -8,7 +8,7 @@ import ScrollIntoView from 'react-scroll-into-view';
 const SECTIONS = ["About Me", "Skills", "Experience", "Projects", "Contact"]
 
 
-export default function Navbar() {
+export default function Navbar({height}) {
   const theme = useTheme();
   const selection = useSelector((state) => state.scrollLocation.value)
 
@@ -26,7 +26,7 @@ export default function Navbar() {
     position: "sticky",
     zIndex: 99,
     top: '0px',
-    height: "60px",
+    height: height ?? "60px",
     backgroundColor: 'white',
     boxShadow: '0px 1px 5px 0px rgba(0,0,0,0.1)'
   }

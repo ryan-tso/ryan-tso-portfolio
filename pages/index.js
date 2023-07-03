@@ -41,11 +41,14 @@ export const sectionInnerLayout = {
 export default function Home(props) {
   const theme = useTheme();
 
+  const navbarHeight = 60
+
   const headerContainerStyle = {
+    position: 'relative',
     width: '100%',
     display: 'flex',
     background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)',
-    pt: '60px',
+    backgroundColor: 'purple'
   }
 
   const sectionHeaderStyle = {
@@ -59,14 +62,16 @@ export default function Home(props) {
 
   const spacerStyle = {
     width: '100%',
-    height: '25vh',
+    height: '50%',
     pt: '2vh',
     background: 'linear-gradient(90deg, #e7e7e7 0%, #f4f4f4 25%, #f4f4f4 75%, #e7e7e7 100%)'
   }
   const triangleStyle = {
+    position: 'sticky',
+    top: '60px',
     width: '100%',
-    height: '100%',
-    clipPath: 'polygon(10% 0, 50% 50%, 90% 0)',
+    height: '30%',
+    clipPath: 'polygon(10% 0, 50% 100%, 90% 0)',
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
   }
 
@@ -82,6 +87,17 @@ export default function Home(props) {
     </Box>
   )
 
+  const Header = ({sectionName, sectionId}) => (
+    <Box sx={headerContainerStyle}>
+      <Box id={sectionId} sx={{position: 'absolute', width: '100%', top: -navbarHeight}}/>
+      <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
+        <Typography sx={sectionHeaderStyle}>
+          {sectionName}
+        </Typography>
+      </Fade>
+    </Box>
+  )
+
   return (
     <Box sx={{width: '100vw', height: '100vh', overflow: 'auto'}}>
       <Head>
@@ -91,23 +107,17 @@ export default function Home(props) {
       </Head>
 
       <Title />
-      <Navbar />
+      <Navbar height={navbarHeight}/>
 
       <Spacer />
 
-      <Box id="aboutme" sx={headerContainerStyle}>
-        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
-          <Typography sx={sectionHeaderStyle}>
-            About Me
-          </Typography>
-        </Fade>
-      </Box>
+      <Header sectionName="About Me" sectionId="aboutme" />
       <AboutMe data={props.aboutMeData}/>
 
       <Spacer color='rgba(154,167,176,0.2)'/>
 
-      <Box id="skills" />
       <Box sx={headerContainerStyle}>
+        <Box id="skills" sx={{position: 'absolute', width: '100%', top: -navbarHeight}}/>
         <Box sx={{width: '100%'}}>
           <Slide direction="left">
             <Box sx={{display: 'flex', backgroundColor: theme.palette.skills.header}}>
@@ -122,29 +132,18 @@ export default function Home(props) {
 
       <Spacer />
 
-      <Box id="experience" sx={headerContainerStyle}>
-        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
-          <Typography sx={sectionHeaderStyle}>
-            Experience
-          </Typography>
-        </Fade>
-      </Box>
+      <Header sectionName="Experience" sectionId="experience" />
       <Experience data={props.experienceData}/>
 
       <Spacer color='rgba(154,167,176,0.2)'/>
 
-      <Box id="projects" sx={headerContainerStyle}>
-        <Fade duration={1500} triggerOnce style={{display: 'flex', width: '100%'}}>
-          <Typography sx={sectionHeaderStyle}>
-            Projects
-          </Typography>
-        </Fade>
-      </Box>
+      <Header sectionName="Projects" sectionId="projects" />
       <Projects data={props.projectsData}/>
 
       <Spacer />
 
-      <Box id="contact" sx={{...headerContainerStyle}}>
+      <Box sx={{...headerContainerStyle}}>
+        <Box id="contact" sx={{position: 'absolute', width: '100%', top: -navbarHeight}}/>
         <Box sx={{width: '100%', backgroundColor: theme.palette.contact.background, overflow: 'hidden'}}>
           <Slide direction="right" triggerOnce>
             <Fade triggerOnce>
