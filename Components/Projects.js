@@ -1,15 +1,15 @@
-import {useRef, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Box, IconButton, Stack, useTheme} from "@mui/material";
+import {useRef, useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {Box, Stack, useTheme} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import {Slide, Fade} from 'react-awesome-reveal';
-import {useDraggable} from 'react-use-draggable-scroll';
+import {Slide} from 'react-awesome-reveal';
 import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
 import {sectionLayout} from "../pages/index";
 import ProjectCard from './ProjectCard';
 import { ScrollSync, ScrollSyncNode } from 'scroll-sync-react';
+import DragScroll from './utilities/DragScroll';
 
 
 const CARD_WIDTH = '30vw'
@@ -23,14 +23,10 @@ const cardContainerStyle = {
   overFlowY: 'hidden',
   '&::-webkit-scrollbar': {
     display: 'none'
+  },
+  '&:hover': {
+    cursor: 'grab'
   }
-}
-
-const backgroundStyle = {
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  pointerEvents: 'none',
 }
 
 const arrowStyle = {
@@ -49,42 +45,36 @@ const arrowStyle = {
   borderRadius: '3px'
 }
 
+const EndMargin = () => (
+  <Box sx={{minWidth: '50vw'}} />
+)
 
 export default function Projects({ data }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const {events} = useDraggable(ref);
+  const nearestCardRef = useRef(null);
   const isElementVisible = useIsElementVisible(ref.current, {rootMargin: theme.rootMargins.scrollInViewSection});
-  const selection = useSelector((state) => state.scrollLocation.value)
 
   useEffect(() => {
     if (isElementVisible) dispatch(setScrollLocation('Projects'))
   }, [isElementVisible])
 
+  useEffect(() => {
+    scrollToCard();
+  }, [])
+
+  const scrollToCard = () => setTimeout(() => {
+    if (ref.current && nearestCardRef.current) {
+      const centerCoord = nearestCardRef.current.offsetLeft + nearestCardRef.current.offsetWidth/2 - ref.current.clientWidth/2
+      ref.current.scrollTo({top: 0, left: centerCoord, behavior: "smooth"});
+    }
+  }, 17)
 
   return (
     <Box sx={{...sectionLayout, background: 'linear-gradient(90deg, #cfcfcf 0%, #ebebeb 30%, #ebebeb 70%, #cfcfcf 100%)'}}>
       <Slide direction="right" triggerOnce>
-        <Box sx={{}}>
-          {/*<Box*/}
-          {/*  className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite" : ""}*/}
-          {/*  sx={{*/}
-          {/*    ...backgroundStyle,*/}
-          {/*    '--animate-duration': '5s',*/}
-          {/*    clipPath: 'polygon(40% 0, 90% 0, 30% 100%, -20% 100%)',*/}
-          {/*    backgroundColor: theme.palette.projects.background2*/}
-          {/*  }}*/}
-          {/*/>*/}
-          {/*<Box*/}
-          {/*  className={selection === "Projects" ? "animate__animated animate__pulse animate__infinite infinite animate__delay-2s" : ""}*/}
-          {/*  sx={{*/}
-          {/*    ...backgroundStyle,*/}
-          {/*    '--animate-duration': '5s',*/}
-          {/*    clipPath: 'polygon(120% 0, 140% 0, 90% 100%, 70% 100%)',*/}
-          {/*    backgroundColor: theme.palette.projects.background3*/}
-          {/*  }}*/}
-          {/*/>*/}
+        <Box>
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
@@ -92,27 +82,33 @@ export default function Projects({ data }) {
             <KeyboardArrowRightIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
           <ScrollSync>
-            <ScrollSyncNode group="a">
-            <Box ref={ref} {...events} sx={cardContainerStyle}>
-              <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-              <Stack direction='row' spacing={10} sx={{pt: '10px', pb: '10px', mt: '20px', mb: '20px'}}>
-                {
-                  data.map((item, index) => (
-                      <ProjectCard
-                        key={index}
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        description={item.description}
-                        picUrl={item.picUrl}
-                        gitHubUrl={item.gitHubUrl ?? null}
-                        demoUrl={item.demoUrl ?? null}
-                      />
-                  ))
-                }
-              </Stack>
-              <Box sx={{minWidth: {xs: '10%', sm:`calc(50% - ${CARD_WIDTH}/2)`}}}/>
-            </Box>
-            </ScrollSyncNode>
+            <DragScroll dragEndCallback={scrollToCard}>
+              <ScrollSyncNode group="a">
+                  <Box ref={ref} sx={cardContainerStyle}>
+                    <Stack direction='row' spacing='2.5%' sx={{pt: '10px', pb: '10px', mt: '20px', mb: '20px'}}>
+                      <EndMargin />
+                      {
+                        data.map((item, index) => {
+                          return (
+                            <ProjectCard
+                              key={index}
+                              ref={nearestCardRef}
+                              cardId={index}
+                              title={item.title}
+                              subtitle={item.subtitle}
+                              description={item.description}
+                              picUrl={item.picUrl}
+                              gitHubUrl={item.gitHubUrl ?? null}
+                              demoUrl={item.demoUrl ?? null}
+                            />
+                          )
+                        })
+                      }
+                      <EndMargin />
+                    </Stack>
+                  </Box>
+              </ScrollSyncNode>
+            </DragScroll>
           </ScrollSync>
         </Box>
       </Slide>

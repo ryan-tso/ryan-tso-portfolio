@@ -1,10 +1,11 @@
 import Link from "next/link";
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect, forwardRef} from "react";
 import {Box, Button, Typography, useTheme, Fade, Slide, IconButton, Tooltip, Stack} from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import {ScrollSyncNode} from 'scroll-sync-react';
+import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 
 
 const CARD_WIDTH = '30vw'
@@ -12,14 +13,25 @@ const EASING = 'cubic-bezier(.5, .1, .5, .9)'
 const SLIDE_DURATION = 500
 
 
-export default function ProjectCard({title, subtitle, description, picUrl, gitHubUrl, demoUrl}) {
+const ProjectCard = forwardRef(({title, subtitle, description, picUrl, gitHubUrl, demoUrl, setNearestCard, cardId}, cardRef) => {
   const theme = useTheme();
   const containerRef = useRef(null);
   const [hovering, setHovering] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const isElementVisible = useIsElementVisible(containerRef.current, {rootMargin: '0px -47.5% 0px -47.5%'});
+
+  // First rendered card will attach itself as cardRef
+  useEffect(() => {
+    if (!cardRef.current) cardRef.current = containerRef.current
+  }, [])
+
+  useEffect(() => {
+    if (isElementVisible) cardRef.current = containerRef.current;
+  },[isElementVisible])
 
   const cardStyle = {
     display: 'flex',
+    flex: 'none',
     position: 'relative',
     height: CARD_WIDTH,
     minHeight: '350px',
@@ -31,12 +43,12 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
     boxShadow: '0px 0px 10px 3px rgba(0,0,0,0.4)',
     overflow: 'hidden',
     '&:hover': {
-      cursor: 'default',
+      cursor: 'grab',
     }
   }
 
   const cardPictureStyle = {
-    width: '125%',
+    width: '140%',
     height: '100%',
     transform: hovering || isFlipped ? 'scale(1.1,1.1)' : '',
     backgroundImage: picUrl,
@@ -227,4 +239,6 @@ export default function ProjectCard({title, subtitle, description, picUrl, gitHu
       </Box>
     </Box>
   )
-}
+})
+
+export default ProjectCard
