@@ -85,7 +85,8 @@ export default function Skills({ data }) {
     position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '80px',
+    pl: '5px',
+    pr: '5px',
     backgroundColor: theme.palette.skills.meterHeader
   }
 
@@ -200,7 +201,7 @@ export default function Skills({ data }) {
             <Box sx={meterContainerStyle}>
               <Box sx={meterHeaderStyle}>
                 <Typography sx={{color: 'white'}}>
-                  Expertise
+                  Confidence
                 </Typography>
               </Box>
               <Box sx={meterLevelStyle}>

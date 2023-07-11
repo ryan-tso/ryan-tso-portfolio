@@ -73,7 +73,7 @@ export default function Projects({ data }) {
 
   return (
     <Box sx={{...sectionLayout, background: 'linear-gradient(90deg, #cfcfcf 0%, #ebebeb 30%, #ebebeb 70%, #cfcfcf 100%)'}}>
-      <Slide direction="right" triggerOnce>
+
         <Box>
           <Box sx={{...arrowStyle, left: '2%'}}>
             <KeyboardArrowLeftIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
@@ -81,8 +81,9 @@ export default function Projects({ data }) {
           <Box sx={{...arrowStyle, right: '2%'}}>
             <KeyboardArrowRightIcon sx={{fontSize: {xs: '50px', sm: '70px'}}}/>
           </Box>
+          <Slide direction="right" triggerOnce>
           <ScrollSync>
-            <DragScroll dragEndCallback={scrollToCard}>
+            <DragScroll speedScale={1.5} dragEndCallback={scrollToCard}>
               <ScrollSyncNode group="a">
                   <Box ref={ref} sx={cardContainerStyle}>
                     <Stack direction='row' spacing='2.5%' sx={{pt: '10px', pb: '10px', mt: '20px', mb: '20px'}}>
@@ -110,8 +111,9 @@ export default function Projects({ data }) {
               </ScrollSyncNode>
             </DragScroll>
           </ScrollSync>
+          </Slide>
         </Box>
-      </Slide>
+
     </Box>
   );
 }

@@ -1,15 +1,10 @@
-import EnsemblePic from "./public/FarmPlot.jpg";
-import OrganikaPic from "./public/OrganikaPic.jpg";
-import AWExpressPic from "./public/AWExpressPic.jpg";
-import PortfolioPic from "./public/PortfolioPic.jpg";
-import ProgrammingPic from "./public/ProgrammingPic.jpg";
-
 
 export const ABOUT_ME = [
   "I'm a recent computer science graduate who is passionate about creating interactive, easy-to-use, and responsive " +
   "full-stack web applications.",
-  "I specialize in JavaScript, React, Next.js, and RESTful APIs along with a myriad of backend technology; but, if " +
-  "there is tech that I'm not familiar with, it won't take long for me to pick it up!",
+  "I specialize in JavaScript, React, Next.js, and RESTful APIs along with a myriad of backend technology such as Django, " +
+  "Node.js, and AWS Lambda and AWS API Gateway; and, if there is tech that I'm not familiar with, it won't take long for " +
+  "me to pick it up!",
   // "Being a freelance artist on the side, I am well versed in translating requirements to solutions while being highly " +
   // "critical of my own work, which is why I give it my all when it comes to the appearance and functionality of what I " +
   // "create.",
@@ -38,7 +33,7 @@ export const SKILLS = [
       {name: "Django", value: 0.65},
       {name: "Node.js", value: 0.7},
       {name: "RESTful APIs", value: 0.95},
-      {name: "MySQL", value: 0.6},
+      {name: "MySQL", value: 0.7},
       {name: "NoSQL", value: 0.4},
       {name: "Serverless", value: 0.6},
       {name: "Cloud", value: 0.7},
@@ -58,7 +53,7 @@ export const SKILLS = [
 export const EXPERIENCE = [
   {
     company: "Ensemble Scientific",
-    picture: `url(${EnsemblePic.src})`,
+    picture: `https://career-files.s3.us-west-1.amazonaws.com/portfolio/FarmPlot.jpg`,
     role: "Full-Stack-Developer",
     period: "2021 - 2022",
     description: "Ensemble Scientific is a company that produces IoT sensors and devices used primarily in the " +
@@ -87,7 +82,7 @@ export const EXPERIENCE = [
   },
   {
     company: "Organika Health Products Inc.",
-    picture: `url(${OrganikaPic.src})`,
+    picture: `https://career-files.s3.us-west-1.amazonaws.com/portfolio/OrganikaPic.jpg`,
     role: "Quality Control Supervisor",
     period: "2012 - 2019",
     description: "Organika is a natural health supplements company specializing in manufacturing and distribution, " +
@@ -116,7 +111,7 @@ export const PROJECTS = [
   {
     title: 'AWExpress',
     subtitle: 'A full-stack AWS-based marketplace',
-    picUrl: `url(${AWExpressPic.src})`,
+    picUrl: `https://career-files.s3.us-west-1.amazonaws.com/portfolio/AWExpressPic.jpg`,
     gitHubUrl: 'https://github.com/ryan-tso/AWExpress',
     demoUrl: 'https://main.d3kth9ne2jpxsc.amplifyapp.com',
     description: "AWExpress is a full-stack academic project developed for Amazon as an internal marketplace for employees. " +
@@ -128,7 +123,7 @@ export const PROJECTS = [
   {
     title: 'Portfolio',
     subtitle: 'A website about me',
-    picUrl: `url(${PortfolioPic.src})`,
+    picUrl: `https://career-files.s3.us-west-1.amazonaws.com/portfolio/PortfolioPic.jpg`,
     gitHubUrl: 'https://github.com/ryan-tso/ryan-tso-portfolio',
     description: "This portfolio was planned and designed in Adobe Photoshop with a mobile-first approach, and is built " +
       "with React, Next.js and Redux with Material UI for styling.  Nav bar logic and smooth page navigation was created " +
@@ -138,7 +133,7 @@ export const PROJECTS = [
   {
     title: "More to Come!",
     subtitle: "Striving for growth",
-    picUrl: `url(${ProgrammingPic.src})`,
+    picUrl: `https://career-files.s3.us-west-1.amazonaws.com/portfolio/ProgrammingPic.jpg`,
     description: "I hope to work with you to develop great products and effective solutions for you or your customers' " +
       "needs.  Let us collaborate together and make the world a little bit easier!"
   }

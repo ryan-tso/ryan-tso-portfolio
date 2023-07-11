@@ -1,7 +1,7 @@
 import {useEffect, useRef} from "react";
 
 
-export default function DragScroll({children, dragEndCallback}) {
+export default function DragScroll({children, speedScale, dragEndCallback}) {
   const ref = useRef(null);
   const touchData = useRef( {
     touchStart: 0,
@@ -61,7 +61,7 @@ export default function DragScroll({children, dragEndCallback}) {
     const slider = ref.current.children[0];
     const x = e.pageX - slider.offsetLeft;
     const walkX = x - mouseCoords.current.startX;
-    slider.scrollLeft = mouseCoords.current.scrollLeft - walkX;
+    slider.scrollLeft = mouseCoords.current.scrollLeft - (walkX * (speedScale ?? 1));
   }
 
 

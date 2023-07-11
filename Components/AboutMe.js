@@ -9,7 +9,10 @@ import { Fade, Slide } from "react-awesome-reveal";
 import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from '../redux/features/navigation/scroll-location';
 import { sectionInnerLayout, sectionLayout } from "../pages/index";
-import RyanPic from "../public/RyanPic.jpg";
+
+
+const PROFILE_PIC_LINK = 'https://career-files.s3.us-west-1.amazonaws.com/portfolio/RyanPic.jpg'
+const RESUME_LINK = 'https://career-files.s3.us-west-1.amazonaws.com/RyanResume.pdf'
 
 
 const EducationStrip = ({title, year, school, color, offset}) => (
@@ -85,7 +88,7 @@ export default function AboutMe({ data }) {
         <Box sx={{position: 'relative', width: {xs: '65%', sm: '30%'}, minWidth: '200px'}}>
           <Box sx={photoStyle}>
             <Image
-              src={RyanPic}
+              src={PROFILE_PIC_LINK}
               fill
               priority
               quality={100}
@@ -97,7 +100,7 @@ export default function AboutMe({ data }) {
             <Box sx={photoBackingStyle}>
               <Stack direction='column' sx={{position: 'relative', ml: 'auto', mt: 'auto', p: '5px', alignItems: 'flex-end'}}>
                 <Slide cascade damping={0.1} direction="left" triggerOnce>
-                  <Link href="/files/RyanResume.pdf" locale={false} rel="noopener noreferrer" target="_blank">
+                  <Link href={RESUME_LINK} locale={false} rel="noopener noreferrer" target="_blank">
                     <IconButton sx={{borderRadius: '0px', p: '0'}}>
                      <DescriptionIcon sx={{color: 'white', fontSize: '60px', '&:hover': {color: '#f1c6d1'}}}/>
                     </IconButton>

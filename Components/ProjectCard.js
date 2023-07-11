@@ -51,7 +51,7 @@ const ProjectCard = forwardRef(({title, subtitle, description, picUrl, gitHubUrl
     width: '140%',
     height: '100%',
     transform: hovering || isFlipped ? 'scale(1.1,1.1)' : '',
-    backgroundImage: picUrl,
+    backgroundImage: `url(${picUrl})`,
     backgroundSize: 'cover',
     filter: hovering || isFlipped ? 'blur(4px)' : '',
     transition: 'all 0.4s ease'

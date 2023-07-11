@@ -4,8 +4,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {sectionInnerLayout, sectionLayout} from "../pages/index";
 import {Slide} from "react-awesome-reveal";
 import {useEffect, useRef, useState} from "react";
-import EnsemblePic from "../public/FarmPlot.jpg";
-import OrganikaPic from "../public/OrganikaPic.jpg";
 import {useIsElementVisible} from "../Hooks/useIsElementVisible";
 import {useDispatch, useSelector} from "react-redux";
 import {setScrollLocation} from "../redux/features/navigation/scroll-location";
@@ -51,7 +49,7 @@ export default function Experience({ data }) {
     top: 0,
     left: 0,
     zIndex: -1,
-    backgroundImage: data[page].picture,
+    backgroundImage: `url(${data[page].picture})`,
     backgroundSize: 'cover',
     height: '100vh',
     width: '100vw',

@@ -6,8 +6,9 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useIsElementVisible } from "../Hooks/useIsElementVisible";
 import { setScrollLocation } from "../redux/features/navigation/scroll-location";
 import { sectionInnerLayout } from "../pages/index";
-import TitleImage from "../public/TitleBackground.jpg";
 import Image from "next/image";
+
+const TITLE_IMAGE = 'https://career-files.s3.us-west-1.amazonaws.com/portfolio/TitleBackground.jpg';
 
 export default function Title() {
   const theme = useTheme();
@@ -22,7 +23,7 @@ export default function Title() {
 
   const titleImageStyle = {
     position: 'absolute',
-    backgroundImage: `url(${TitleImage.src})`,
+    backgroundImage: `url(${TITLE_IMAGE})`,
     backgroundSize: 'cover',
     height: '100vh',
     width: '100vw',
@@ -80,10 +81,9 @@ export default function Title() {
     <Box ref={ref} sx={{position: "relative", height: "100vh", minHeight: '500px', backgroundColor: 'white', overflow: 'hidden'}}>
       <Image
         className={selection === "Title" ? "breathing" : ""}
-        src={TitleImage}
+        src={TITLE_IMAGE}
         fill
         priority
-        placeholder="blur"
         alt="Title Background"
         style={{objectFit:'cover'}}
       />
