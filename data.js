@@ -64,7 +64,7 @@ export const EXPERIENCE = [
       "models to company IOT devices and end-points to manage users, devices, data, telemetry, and organization information " +
       "from the front-end cloud app or from the IOT devices themselves",
       "Developed the front-end using JavaScript, React, Next.js, and Redux which allowed users to create or join organizations, " +
-      "as well claim, manage, or view the data from the IOT devices for their organization in real time",
+      "as well as claim, manage, or view the data from the IOT devices for their organization in real time",
       "Created and maintained comprehensive test suites for back-end API using Pytest and Postman API",
       "Helped to develop QMS modules for in-house IoT device production that adheres to the requirements of ISO 9001",
       "Constructed an intuitive roadmap for the company to become ISO 9001 certified",
