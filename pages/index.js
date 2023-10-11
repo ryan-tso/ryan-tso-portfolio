@@ -4,16 +4,16 @@ import { Slide, Fade } from "react-awesome-reveal";
 import { Title, AboutMe, Navbar, Skills, Experience, Projects, Contact } from "../Components/index";
 import { ABOUT_ME, SKILLS, EXPERIENCE, PROJECTS } from "../data";
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      aboutMeData: ABOUT_ME,
-      skillsData: SKILLS,
-      experienceData: EXPERIENCE,
-      projectsData: PROJECTS
-    }
-  }
-}
+// export const getStaticProps = async () => {
+//   return {
+//     props: {
+//       aboutMeData: ABOUT_ME,
+//       skillsData: SKILLS,
+//       experienceData: EXPERIENCE,
+//       projectsData: PROJECTS
+//     }
+//   }
+// }
 
 
 export const sectionLayout = {
@@ -38,7 +38,7 @@ export const sectionInnerLayout = {
 }
 
 
-export default function Home(props) {
+export default function Home() {
   const theme = useTheme();
 
   const navbarHeight = 60
@@ -112,14 +112,14 @@ export default function Home(props) {
       <Spacer />
 
       <Header sectionName="About Me" sectionId="aboutme" />
-      <AboutMe data={props.aboutMeData}/>
+      <AboutMe data={ABOUT_ME}/>
 
       <Spacer color='rgba(154,167,176,0.2)'/>
 
       <Box sx={headerContainerStyle}>
         <Box id="skills" sx={{position: 'absolute', width: '100%', top: -navbarHeight}}/>
         <Box sx={{width: '100%'}}>
-          <Slide direction="left">
+          <Slide direction="left" triggerOnce>
             <Box sx={{display: 'flex', backgroundColor: theme.palette.skills.header}}>
               <Typography sx={{...sectionHeaderStyle, color: 'white'}}>
                 Skills
@@ -128,17 +128,17 @@ export default function Home(props) {
           </Slide>
         </Box>
       </Box>
-      <Skills data={props.skillsData}/>
+      <Skills data={SKILLS}/>
 
       <Spacer />
 
       <Header sectionName="Experience" sectionId="experience" />
-      <Experience data={props.experienceData}/>
+      <Experience data={EXPERIENCE}/>
 
       <Spacer color='rgba(154,167,176,0.2)'/>
 
       <Header sectionName="Projects" sectionId="projects" />
-      <Projects data={props.projectsData}/>
+      <Projects data={PROJECTS}/>
 
       <Spacer />
 

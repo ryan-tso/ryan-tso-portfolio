@@ -27,8 +27,8 @@ const EducationStrip = ({title, year, school, color, offset}) => (
       <Stack direction="row" spacing={2} sx={{ml: '10px', alignItems: 'center'}}>
         <SchoolIcon sx={{color: 'white', fontSize: '75px'}}/>
         <Stack direction="column">
-          <Fade>
-            <Slide cascade damping={0.2} direction="right">
+          <Fade triggerOnce>
+            <Slide cascade damping={0.2} triggerOnce direction="right">
               <Typography sx={{fontSize: {sm: '1rem', md: '1.5rem'}, fontWeight: 400, lineHeight: '20px', color: 'white'}}>{title}</Typography>
               <Typography sx={{fontSize: {xs: '0.8rem', sm: '0.8rem', md: '1rem'}, fontWeight: 300, lineHeight: '20px', color: 'white'}}>{year}</Typography>
               <Typography sx={{fontSize: {xs: '0.8rem', sm: '0.8rem', md: '1rem'}, fontWeight: 300, lineHeight: '20px', color: 'white'}}>{school}</Typography>
@@ -126,7 +126,7 @@ export default function AboutMe({ data }) {
         </Box>
       </Box>
       <Box sx={{position:'relative', width: '100%', backgroundColor: theme.palette.aboutColor.background}}>
-        <Slide direction="right" cascade damping={0.25}>
+        <Slide direction="right" triggerOnce cascade damping={0.25}>
           <EducationStrip title="Bachelor of Computer Science" year="2019 - 2023" school="University of British Columbia" color={theme.palette.aboutColor.educationBacking1} />
           <EducationStrip title="Bachelor of Food and Nutritional Science" year="2005 - 2012" school="University of British Columbia" color={theme.palette.aboutColor.educationBacking2} offset={5}/>
         </Slide>

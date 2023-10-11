@@ -144,7 +144,7 @@ export default function Skills({ data }) {
 
   return (
     <Box ref={ref} sx={sectionLayout}>
-      <Slide direction="right">
+      <Slide direction="right" triggerOnce>
         <Box sx={{...sectionLayout, background: '', backgroundColor: theme.palette.skills.background}}>
           <Box sx={backgroundIcon1ContainerStyle}>
             <Box className={selection === "Skills" ? "spinning" : ""} sx={backgroundIcon1Style} />
@@ -179,7 +179,7 @@ export default function Skills({ data }) {
                           onMouseLeave={() => setExpertise(0)}
                           sx={selectionStyle}
                         >
-                          <Slide cascade direction="up">
+                          <Slide cascade direction="up" triggerOnce>
                             <Typography
                               align="center"
                               sx={{
