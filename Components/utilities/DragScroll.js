@@ -80,8 +80,8 @@ export default function DragScroll({children, speedScale, dragEndCallback}) {
     ref.current.children[0].style.overflow = 'hidden';
     setTimeout(() => {
       ref.current.children[0].style.overflow = 'auto';
-    }, 100)
-    if (dragEndCallback) dragEndCallback();
+      if (dragEndCallback) dragEndCallback();
+    }, 50)
   }
 
   return (

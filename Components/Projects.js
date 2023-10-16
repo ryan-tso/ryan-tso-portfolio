@@ -68,8 +68,9 @@ export default function Projects({ data }) {
     if (ref.current && nearestCardRef.current) {
       const centerCoord = nearestCardRef.current.offsetLeft + nearestCardRef.current.offsetWidth/2 - ref.current.clientWidth/2
       ref.current.scrollTo({top: 0, left: centerCoord, behavior: "smooth"});
+      console.log("drag end callback fired")
     }
-  }, 17)
+  }, 20)
 
   return (
     <Box sx={{...sectionLayout, background: 'linear-gradient(90deg, #cfcfcf 0%, #ebebeb 30%, #ebebeb 70%, #cfcfcf 100%)'}}>
@@ -83,7 +84,7 @@ export default function Projects({ data }) {
           </Box>
           <Slide direction="right" triggerOnce>
           <ScrollSync>
-            <DragScroll speedScale={1.5} dragEndCallback={scrollToCard}>
+            <DragScroll speedScale={1} dragEndCallback={scrollToCard}>
               <ScrollSyncNode group="a">
                   <Box ref={ref} sx={cardContainerStyle}>
                     <Stack direction='row' spacing='2.5%' sx={{pt: '10px', pb: '10px', mt: '20px', mb: '20px'}}>
